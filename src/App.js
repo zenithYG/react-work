@@ -1,9 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import { db } from './firebase';
 
 function App() {
+
+  console.log('db', db)
+
   function createDatabase(key) {
-    console.log(`create Database, ${key}`);
+    console.log('APIKEY : ', process.env.REACT_APP_PROJECT_ID);
   }
 
   function readDatabase(key) {
