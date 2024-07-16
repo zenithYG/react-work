@@ -56,10 +56,10 @@ const Resume = () => {
   return (
     <Container>
         <Card>
-        <MainTitle>iOS Developer</MainTitle>
+        <MainTitle>{userData.title}</MainTitle>
         <InfoContainer>
         <Info>
-            <Item>someone@email.com</Item>
+            <Item>{userData.email}</Item>
             <Item>mobile: +852 xxxxxxxxx</Item>
             <Item>Nationality: Chinese</Item>
         </Info>
