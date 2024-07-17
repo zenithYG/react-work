@@ -2,6 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { db, auth } from '../firebase';
 import { doc, getDoc, updateDoc, Timestamp } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
+import { 
+  WorkPeriod,
+  createDate, 
+  calculateDuration,
+  calculateDurationCurrent,
+  calculateTotalDuration,
+  getCurrentTime,
+} from '../utils/DateUtils';
 
 import {
     UpdateButton,
@@ -48,40 +56,7 @@ const Resume = () => {
 
     return () => unsubscribe();
   }, []);
-
-  const militaryStartDate = () => {
-    const date = new Date('2008-10-28T00:00:00');
-    return Timestamp.fromDate(date);
-  } 
-
-  const militaryEndDate = () => {
-    const date = new Date('2010-09-07T00:00:00');
-    return Timestamp.fromDate(date);
-  } 
-
-  const createDate = (strDate) => {
-    const date = new Date(strDate);
-    return Timestamp.fromDate(date);
-  } 
-
-  const calculateDuration = (startDate, endDate) => {
-    const start = new Date(startDate);
-    const end = new Date(endDate);
-    const diffInMs = end - start;
-    const diffInYears = Math.floor(diffInMs / (1000 * 60 * 60 * 24 * 365.25));
-    const diffInMonths = Math.floor((diffInMs % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
-    return `${diffInYears}년 ${diffInMonths}개월`;
-  }
-
-  const calculateDurationCurrent = (startDate) => {
-    const start = new Date(startDate);
-    const end = new Date();
-    const diffInMs = end - start;
-    const diffInYears = Math.floor(diffInMs / (1000 * 60 * 60 * 24 * 365.25));
-    const diffInMonths = Math.floor((diffInMs % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
-    return `${diffInYears}년 ${diffInMonths}개월`;
-  }
-
+  
   const handleUpdate = async () => {
     if (user) {
       const userDocRef = doc(db, 'Users', user.uid);
@@ -96,10 +71,19 @@ const Resume = () => {
           jobTitle: 'Updated Job Title', 
           disabilityStatus: '없음',
           veteransStatus: '없음',
+          totalPeriod: calculateTotalDuration(
+            [
+              new WorkPeriod('2022-05-23T00:00:00', getCurrentTime()),
+              new WorkPeriod('2020-01-02T00:00:00', '2022-05-20T00:00:00'),
+              new WorkPeriod('2019-03-13T00:00:00', '2019-12-31T00:00:00'),
+              new WorkPeriod('2017-08-21T00:00:00', '2019-03-15T00:00:00'),
+              new WorkPeriod('2014-07-14T00:00:00', '2017-08-14T00:00:00')
+            ]
+          ),
           militaryInfo: { 
             discharger: '만기제대',
-            startDate: militaryStartDate(),
-            endDate: militaryEndDate(),
+            startDate: createDate('2008-10-28T00:00:00'),
+            endDate: createDate('2010-09-07T00:00:00'),
             positon: '보병',
             rank: '병장',
             militaryExperience: '군필',
@@ -177,16 +161,29 @@ const Resume = () => {
               startDate: createDate('2017-08-21T00:00:00'),
               endDate: createDate('2019-03-15T00:00:00'),
               period: calculateDuration('2017-08-21T00:00:00', '2019-03-15T00:00:00')
+            },
+            {
+              company: '(주)스타십벤딩머신',
+              employmentType: '정규직',
+              part: 'MINT LAB',
+              majorWork: '사내 이미지프로세싱 모듈을 활용한 앱 개발',
+              rank: '팀원 / 연구원',
+              position: 'Mobile Application Developer(Android, iOS)',
+              address: '서울특별시 마포구 성암로 330 DMC첨단산업센터 B동 613호 (우)03920',
+              startDate: createDate('2014-07-14T00:00:00'),
+              endDate: createDate('2017-08-14T00:00:00'),
+              period: calculateDuration('2014-07-14T00:00:00', '2017-08-14T00:00:00')
             }
           ],
+          projects: [
 
+          ],
           executiveSummary: [
             '10년차 모바일 개발',
             'Swift, Objective-C, Android, Java, React-Native 언어 활용',
             'MVC, MVVM, RIBs, Clean Architecture 적용 경험',
             '코드의 안정성과 품질, 그리고 빠른 개발속도를 위한 유닛테스트, 통합테스트 작성 및 활용'
           ]
-
         });
         // 업데이트 후 다시 데이터를 가져와서 상태를 갱신
         fetchUserData(user.uid);
