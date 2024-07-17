@@ -57,6 +57,20 @@ export const Avatar = styled.div`
   }
 `;
 
+export const UpdateButton = styled.button`
+  padding: 10px 20px;
+  margin: 20px;
+  background-color: #5b7fa4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #456f8a;
+  }
+`;
+
 export const MainTitle = styled.h1`
   color: #ffffff; 
   font-weight: 800;
