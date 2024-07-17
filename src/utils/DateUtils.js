@@ -19,6 +19,12 @@ export const calculateDuration = (startDate, endDate) => {
     const diffInMs = end - start;
     const diffInYears = Math.floor(diffInMs / (1000 * 60 * 60 * 24 * 365.25));
     const diffInMonths = Math.floor((diffInMs % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
+
+    // 연도가 0이면 개월만 리턴
+    if (diffInYears === 0) {
+      return `${diffInMonths}개월`;
+    }
+
     return `${diffInYears}년 ${diffInMonths}개월`;
 }
 
@@ -28,6 +34,12 @@ export const calculateDurationCurrent = (startDate) => {
     const diffInMs = end - start;
     const diffInYears = Math.floor(diffInMs / (1000 * 60 * 60 * 24 * 365.25));
     const diffInMonths = Math.floor((diffInMs % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
+
+    // 연도가 0이면 개월만 리턴
+    if (diffInYears === 0) {
+      return `${diffInMonths}개월`;
+    }
+
     return `${diffInYears}년 ${diffInMonths}개월`;
 }
 
@@ -47,6 +59,12 @@ export const calculateTotalDuration = (workPeriods) => {
         totalMonths += 12;
       }
     });
+
+    // 연도가 0이면 개월만 리턴
+    if (totalYears === 0) {
+      return `${totalMonths}개월`;
+    }
+
     return `${totalYears}년 ${totalMonths}개월`;
 };
 
