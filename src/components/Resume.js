@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { db, auth } from '../firebase';
-import { doc, getDoc, updateDoc, Timestamp } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import exportToPdf from '../utils/PDFExportor';
 import exportToDocx from '../utils/docxExportor';
@@ -13,6 +13,7 @@ import {
   calculateDurationCurrent,
   calculateTotalDuration,
   getCurrentTime,
+  calculateKoreanAge
 } from '../utils/dateUtils';
 
 import {
@@ -269,6 +270,28 @@ const Resume = () => {
             'Swift, Objective-C, Android, Java, React-Native 언어 활용',
             'MVC, MVVM, RIBs, Clean Architecture 적용 경험',
             '코드의 안정성과 품질, 그리고 빠른 개발속도를 위한 유닛테스트, 통합테스트 작성 및 활용'
+          ],
+          educationInfo: [
+            {
+              title: '정보보안전문가 인포섹(주) 채용연계 과정',
+              organization: '한국정보기술연구원',
+              contents: '정보보호 시스템 운영, 침해사고 대응, 시스템 구축방법론, 스시템 진단, 웹 취약점 진단, 컨설팅',
+              period: '2014.02.24 - 2014.06.05(560 h)'
+            },
+            {
+              title: '자바기반 스마트 웹 & 앱 콘텐츠 개발자',
+              organization: '한국정보과학진흥협회',
+              contents: 'JAVA, JSP, Oracle SQL, Sping, Android, HTML5',
+              period: '2013.06.24 - 2013.08.22(320 h)'
+            }
+          ],
+          licenseInfo: [
+            {
+              name: '정보처리기사',
+              lisenceNumber: '132020504590',
+              organization: '한국산업인력공단',
+              date: '2013.08.16'
+            }
           ]
         });
         // 업데이트 후 다시 데이터를 가져와서 상태를 갱신
@@ -299,7 +322,8 @@ const Resume = () => {
         <MainTitle>{userData.title}</MainTitle>
         <InfoContainer>
         <Info>
-            <Item>{userData.name}</Item>
+            <Item>{userData.name} ({userData.chineseCharacter})</Item>
+            <Item>{userData.birthday} (만 {calculateKoreanAge(userData.birthday)}세) </Item>
             <Item>{userData.email}</Item>
             <Item>{userData.mobile}</Item>
         </Info>

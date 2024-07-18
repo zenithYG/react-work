@@ -78,3 +78,14 @@ export const getCurrentTime = () => {
     const seconds = String(now.getSeconds()).padStart(2, '0');
     return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
 };
+
+export const calculateKoreanAge = (birthDate) => {
+    const today = new Date();
+    const birth = new Date(birthDate.replace(/\./g, '-'));
+    let age = today.getFullYear() - birth.getFullYear();
+    const monthDifference = today.getMonth() - birth.getMonth();
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birth.getDate())) {
+      age--;
+    }
+    return age;
+}
