@@ -6,7 +6,6 @@ export const Card = styled.div`
   align-items: center;
   background-color: #5b7fa4;
   color: white;
-  padding-right: 20px;
   font-family: Arial, sans-serif;
   max-width: 100%;
 
@@ -23,9 +22,19 @@ export const Info = styled.div`
   padding-right: 10px;
 `;
 
+export const CardContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  max-width: 100%;
+  background-color: #5b7fa4;
+`;
+
 export const InfoContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: row;
   min-width: 50%;
 
@@ -101,8 +110,8 @@ export const Container = styled.div`
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 20px;
-  max-width: 100%; 
-  min-width: 450px;
+  width: 100%; 
+  max-width: 100%;
 
   @media (max-width: 768px) {
     padding: 10px;
@@ -113,7 +122,8 @@ export const Container = styled.div`
 export const TitleContainer = styled.div`
   font-family: Arial, sans-serif;
   padding-top: 0px;
-  max-width: 800px; 
+  width: 100%; 
+  max-width: 100%;
   background-color: #5581B0;
 
   @media (max-width: 768px) {

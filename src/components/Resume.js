@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { db, auth } from '../firebase';
 import { doc, getDoc, updateDoc, Timestamp } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
+import exportToPdf from '../utils/PDFExportor';
+import exportToDocx from '../utils/docxExportor';
+
+
 import { 
   WorkPeriod,
   createDate, 
@@ -9,7 +13,7 @@ import {
   calculateDurationCurrent,
   calculateTotalDuration,
   getCurrentTime,
-} from '../utils/DateUtils';
+} from '../utils/dateUtils';
 
 import {
     UpdateButton,
@@ -22,12 +26,25 @@ import {
     SubTitle,
     Container,
     Divider,
-    ListItem
+    ListItem,
+    CardContainer
 } from './ResumeStyles';
 
 
 
 const Resume = () => {
+
+  const contentRef = useRef();
+
+  const handleExportPdf = () => {
+    const content = contentRef.current;
+    exportToPdf(content, 'example.pdf');
+  };
+
+  const handleExportDocx = () => {
+    const content = contentRef.current.innerText;
+    exportToDocx(content, 'example.docx');
+  };
 
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -273,8 +290,11 @@ const Resume = () => {
   }
 
   return (
-    <Container>
+    <Container ref={contentRef}>
       <UpdateButton onClick={handleUpdate}>Update User Data</UpdateButton>
+      <UpdateButton onClick={handleExportPdf}>Export pdf</UpdateButton>
+      <UpdateButton onClick={handleExportDocx}>Export docx</UpdateButton>
+      <CardContainer>
         <Card>
         <MainTitle>{userData.title}</MainTitle>
         <InfoContainer>
@@ -286,6 +306,7 @@ const Resume = () => {
         <Avatar />
         </InfoContainer>
     </Card>
+    </CardContainer>
       <section>
         <SubTitle>Executive Summary</SubTitle>
         <Divider />
