@@ -48,7 +48,8 @@ export const InfoContainer = styled.div`
 
 export const Item = styled.div`
   margin: 5px 0;
-
+  line-height: 1.0;
+  font-weight: 500;
   @media (max-width: 768px) {
     text-align: center;
   }

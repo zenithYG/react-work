@@ -299,9 +299,9 @@ const Resume = () => {
         <MainTitle>{userData.title}</MainTitle>
         <InfoContainer>
         <Info>
+            <Item>{userData.name}</Item>
             <Item>{userData.email}</Item>
-            <Item>mobile: +852 xxxxxxxxx</Item>
-            <Item>Nationality: Chinese</Item>
+            <Item>{userData.mobile}</Item>
         </Info>
         <Avatar />
         </InfoContainer>
