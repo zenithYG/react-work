@@ -7,7 +7,7 @@ export const Card = styled.div`
   background-color: #5b7fa4;
   color: white;
   font-family: Arial, sans-serif;
-  max-width: 100%;
+  width: 100%;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -24,7 +24,6 @@ export const Info = styled.div`
 
 export const CardContainer = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: row;
   max-width: 100%;
@@ -33,14 +32,17 @@ export const CardContainer = styled.div`
 
 export const InfoContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
   flex-direction: row;
   min-width: 50%;
+  padding-left: 50px;
+  padding-right: 20px;
 
   @media (max-width: 768px) {
     align-items: center;
     width: 100%;
+    justify-content: center;
   }
 `;
 
@@ -87,11 +89,7 @@ export const MainTitle = styled.h1`
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 30px;
-  flex-basis: 100%;
   text-align: left;
-  word-break: break-word;
-  white-space: normal;
-  overflow-wrap: break-word;
 
   @media (max-width: 768px) {
     text-align: center;
