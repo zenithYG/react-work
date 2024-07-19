@@ -8,16 +8,18 @@ import {
     ContentsItem
 } from '../ResumeStyles';
 
-const LicenseInfos = ({ listItems }) => {
+const SchoolInfos = ({ listItems }) => {
+    console.log(listItems)
   return (
     <section>
-      <SubTitle>자격증</SubTitle>
+      <SubTitle>학력정보</SubTitle>
       <Divider />
       {listItems.map((item, index) => (
             <Section key={index}>
-                <SectionTitle>{item.name} ({item.licenseNumber})</SectionTitle>
+                <SectionTitle>{item.type}</SectionTitle>
                 <SectionContainer>
-                    <ContentsItem>발급기관 : {item.organization} | 취득일 : {item.date}</ContentsItem>
+                    <ContentsItem>{item.school} ({item.endType})</ContentsItem>
+                    <ContentsItem>{item.major} | 졸업학점: {item.entireRating}, 전공학점: {item.majorRating} </ContentsItem>
                 </SectionContainer>
             </Section>
         ))}
@@ -25,4 +27,4 @@ const LicenseInfos = ({ listItems }) => {
   );
 }
 
-export default LicenseInfos;
+export default SchoolInfos;

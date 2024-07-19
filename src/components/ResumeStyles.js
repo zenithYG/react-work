@@ -104,6 +104,7 @@ export const SubTitle = styled.h2`
 `;
 
 export const SectionTitle = styled.h3`
+  padding-left: 5px;
   color: #000000; 
   font-weight: 700;
 `;
@@ -159,7 +160,7 @@ export const ContentsSubItem = styled.p`
 `;
 
 export const SectionContainer = styled.div`
-  padding-left: 5px; 
+  padding-left: 15px; 
   margin-top: -10px;
   line-height: 1.0;
   font-weight: 500;
@@ -173,5 +174,5 @@ export const HorizontalSectionContainer = styled.div`
 `;
 
 export const Section = styled.section`
-  padding-left: -50px; 
+  padding-left: -40px; 
 `;

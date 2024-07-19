@@ -7,6 +7,8 @@ import exportToDocx from '../utils/docxExportor';
 import ExecutiveSummary from '../components/ResumeUI/ExecutiveSummary'
 import EducationInfos from './ResumeUI/EducationInfos'
 import LicenseInfos from './ResumeUI/LicenseInfos'
+import MilitaryInfo from './ResumeUI/MilitaryInfo'
+import SchoolInfos from './ResumeUI/SchoolInfos'
 
 import { 
   WorkPeriod,
@@ -103,13 +105,14 @@ const Resume = () => {
             discharger: '만기제대',
             startDate: createDate('2008-10-28T00:00:00'),
             endDate: createDate('2010-09-07T00:00:00'),
-            positon: '보병',
+            position: '통신병',
             rank: '병장',
             militaryExperience: '군필',
             type: '육군'
           },
           schoolInfo: [
             {
+              type: '대학교',
               school: '수원대학교 / 본교',
               startDate: createDate('2007-03-02T00:00:00'),
               endDate: createDate('2014-02-12T00:00:00'),
@@ -121,6 +124,7 @@ const Resume = () => {
               majorGrades: '70'
             },
             {
+              type: '고등학교',
               school: '중흥고등학교 / 부천',
               startDate: createDate('2004-03-02T00:00:00'),
               endDate: createDate('2007-02-14T00:00:00'),
@@ -647,6 +651,11 @@ const Resume = () => {
       <section>
         <LicenseInfos listItems={userData.licenseInfo} />
       </section>
+
+      <section>
+        <MilitaryInfo item ={userData.militaryInfo} />
+      </section>
+
     </Container>
   );
 };
