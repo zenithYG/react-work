@@ -103,6 +103,11 @@ export const SubTitle = styled.h2`
   font-weight: 800;
 `;
 
+export const SectionTitle = styled.h3`
+  color: #000000; 
+  font-weight: 700;
+`;
+
 export const Container = styled.div`
   font-family: Arial, sans-serif;
   line-height: 1.6;
@@ -141,4 +146,32 @@ export const Divider = styled.hr`
 export const ListItem = styled.li`
   line-height: 1.6;
   font-weight: 500;
+`;
+
+export const ContentsItem = styled.p`
+  line-height: 1.0;
+  font-weight: 500;
+`;
+
+export const ContentsSubItem = styled.p`
+  line-height: 1.0;
+  font-weight: 500;
+`;
+
+export const SectionContainer = styled.div`
+  padding-left: 5px; 
+  margin-top: -10px;
+  line-height: 1.0;
+  font-weight: 500;
+`;
+
+export const HorizontalSectionContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: bottom;
+  background-color: #f2f2f2;
+`;
+
+export const Section = styled.section`
+  padding-left: -50px; 
 `;
