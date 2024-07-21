@@ -165,7 +165,7 @@ const Resume = () => {
                   ],
                   workPercent: '50%',
                   technology: 'Swift5, Bitbucket, Jira',
-                  result: '프로젝트 완료 (선도 개발 완료된 버전 그룹장 시연)'
+                  result: [ '프로젝트 완료 (선도 개발 완료된 버전 그룹장 시연)' ]
                 },
                 {
                   title: '신한 쏠뱅크 앱 개발',
@@ -187,7 +187,7 @@ const Resume = () => {
                   ],
                   workPercent: '50%',
                   technology: 'Swift5, Bitbucket, Jira',
-                  result: '프로젝트 완료 MAU(월간활성사용자수) 52만 유지중 ( Android 유저는 제외 )'
+                  result: [ '프로젝트 완료 MAU(월간활성사용자수) 52만 유지중 ( Android 유저는 제외 )' ] 
                 },
                 {
                   title: '신한 쏠미니 앱 개발',
@@ -207,7 +207,10 @@ const Resume = () => {
                   ],
                   workPercent: '50%',
                   technology: 'Swift5, Bitbucket, Jira',
-                  result: 'SOL앱이 지원하지 못하는 유저를 위한 저사양 폰 유저 대응용 앱 개발 (SOL 앱과 병행으로 개발 및 유지보수 되면서 고사양, 저사양 유저 모두 은행 서비스 이용에 문제가 없도록 관리) - MAU(월간활성사용자수) 5천 유지중 ( Android 유저는 제외 )'
+                  result: [
+                    'SOL앱이 지원하지 못하는 유저를 위한 저사양 폰 유저 대응용 앱 개발 (SOL 앱과 병행으로 개발 및 유지보수 되면서 고사양, 저사양 유저 모두 은행 서비스 이용에 문제가 없도록 관리)',
+                    '- MAU(월간활성사용자수) 5천 유지중 ( Android 유저는 제외 )'
+                  ]
                 },
               ]
             },
@@ -243,7 +246,7 @@ const Resume = () => {
                   ],
                   workPercent: '50%',
                   technology: 'Swift5, GitLab',
-                  result: '앱 개발 완료, 서비스 런칭 성공'
+                  result: [ '앱 개발 완료, 서비스 런칭 성공' ]
                 },
                 {
                   title: '알바콜 앱 개선',
@@ -263,7 +266,7 @@ const Resume = () => {
                   ],
                   workPercent: '30%',
                   technology: 'Swift4, GitLab',
-                  result: '앱 기능 및 속도 개선, 기능 및 코드 관리에 필요한 문서화 완료'
+                  result: [ '앱 기능 및 속도 개선, 기능 및 코드 관리에 필요한 문서화 완료' ]
                 },
                 {
                   title: '인크루트 - 취업 비서 앱 개선',
@@ -285,7 +288,7 @@ const Resume = () => {
                   ],
                   workPercent: '70%',
                   technology: 'Objective-C, GitLab',
-                  result: '앱 기능 및 속도 개선, 기능 및 코드 관리 편의성 개선'
+                  result: [ '앱 기능 및 속도 개선, 기능 및 코드 관리 편의성 개선' ]
                 },
                 {
                   title: '인크루트 - 취업운세 앱 개발 및 개선',
@@ -301,7 +304,7 @@ const Resume = () => {
                   ],
                   workPercent: '70%',
                   technology: 'Objective-C, GitLab',
-                  result: '앱 기능 및 속도 개선, 기능 및 코드 관리 편의성 개선'
+                  result: [ '앱 기능 및 속도 개선, 기능 및 코드 관리 편의성 개선' ]
                 },
               ]
             },
@@ -338,7 +341,7 @@ const Resume = () => {
                   ],
                   workPercent: '100%',
                   technology: 'Android(JAVA), GitLab',
-                  result: '앱 개발 완료'
+                  result: [ '앱 개발 완료' ]
                 }
               ]
             },
@@ -371,7 +374,7 @@ const Resume = () => {
                   ],
                   workPercent: '100%',
                   technology: 'Android(JAVA), iOS(Objective-C)',
-                  result: '짧은 기간 내 Android , iOS앱 개발 테스트 및 상용화'
+                  result: [ '짧은 기간 내 Android , iOS앱 개발 테스트 및 상용화' ]
                 },
                 {
                   title: 'LG U+ 그룹웨어 iOS 메신저 개발',
@@ -387,7 +390,7 @@ const Resume = () => {
                   ],
                   workPercent: '100%',
                   technology: 'Swift4, XMPP, RealmDB',
-                  result: '기간 내 iOS 메신저 앱 상용서비스 개발 완료 및 상용화'
+                  result: [ '기간 내 iOS 메신저 앱 상용서비스 개발 완료 및 상용화' ]
                 },
                 {
                   title: 'LG U+ 스마트 가입 앱 기능개선',
@@ -403,7 +406,7 @@ const Resume = () => {
                   ],
                   workPercent: '100%',
                   technology: 'Android, Websquare (Cordova)',
-                  result: 'Websquare 개발 부분 테스트 케이스를 모두 만듬. 유지 보수 관리 할 수 있도록 모듈화 작업 완료 및 기간 내 인수인계'
+                  result: [ 'Websquare 개발 부분 테스트 케이스를 모두 만듬. 유지 보수 관리 할 수 있도록 모듈화 작업 완료 및 기간 내 인수인계' ]
                 },
                 {
                   title: 'LG U+ 스마트 상담 앱 개발',
@@ -421,7 +424,7 @@ const Resume = () => {
                   ],
                   workPercent: '100%',
                   technology: 'Android, Websquare (Cordova)',
-                  result: '기간 내 개발 및 상용화'
+                  result: [ '기간 내 개발 및 상용화' ]
                 },
                 {
                   title: 'LG U+고객센터 앱 – 위젯, APNs 구현',
@@ -438,7 +441,7 @@ const Resume = () => {
                   ],
                   workPercent: '100%',
                   technology: 'Objective-C',
-                  result: '기간 내 개발 완료 및 배포'
+                  result: [ '기간 내 개발 완료 및 배포' ]
                 }
               ]
             },
@@ -473,7 +476,7 @@ const Resume = () => {
                   ],
                   workPercent: '50%',
                   technology: 'React-Native(Android, iOS), Wowza, Firebase Realtime DB, Github',
-                  result: 'ES6 활용, React-Native의 장단점을 이해하고 활용하는 데 도움됨'
+                  result: [ 'ES6 활용, React-Native의 장단점을 이해하고 활용하는 데 도움됨' ]
                 },
                 {
                   title: 'OMG (Oh My Gif) 앱 개발',
@@ -494,7 +497,7 @@ const Resume = () => {
                   ],
                   workPercent: '100%',
                   technology: 'Swfit2.0, Github',
-                  result: 'iOS 앱, 개발부터 배포까지 전담하여 개발 할 수 있었던 경험'
+                  result: [ 'iOS 앱, 개발부터 배포까지 전담하여 개발 할 수 있었던 경험' ]
                 },
                 {
                   title: 'Boodl 앱 개발',
@@ -510,7 +513,7 @@ const Resume = () => {
                   ],
                   workPercent: '30%',
                   technology: 'Android, Github',
-                  result: '앱 개발 완료, 10만 사용자 수와 초기 새로운 영화 홍보에 계약을 맺는 등 긍정적인 성과'
+                  result: [ '앱 개발 완료, 10만 사용자 수와 초기 새로운 영화 홍보에 계약을 맺는 등 긍정적인 성과' ]
                 },
               ]
             }
