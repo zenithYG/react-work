@@ -9,6 +9,7 @@ import EducationInfos from './ResumeUI/EducationInfos'
 import LicenseInfos from './ResumeUI/LicenseInfos'
 import MilitaryInfo from './ResumeUI/MilitaryInfo'
 import SchoolInfos from './ResumeUI/SchoolInfos'
+import WorkingExperience from './ResumeUI/WorkingExperience';
 
 import { 
   WorkPeriod,
@@ -179,7 +180,7 @@ const Resume = () => {
                   work :[
                     '신한 SOL뱅크 전면 개편 개발 (전체메뉴, 상품, 혜택, 머니버스(마이데이터 서비스), 쏠패스(QR인증), STAX 담당)',
                     'RIBs 아키텍처, Clean 아키텍처를 활용한 Native 앱 개발',
-                    'Combine을 활용한 Reactive 구조 활용',
+                    'Concurrency, Combine를 활용한 비동기 프로그래밍 개발',
                     'DiffableDataSource를 활용한 Collection, Table개발',
                     'Flex, Pin 을 이용한 Code 기반 UI 개발',
                     '프로토콜지향 프로그래밍(POP) 전면 활용', 
@@ -311,7 +312,7 @@ const Resume = () => {
             {
               company: '(주)인라이플',
               employmentType: '정규직',
-              part: '서비스 사업부',
+              part: '서비스사업부',
               majorWork: '광고플랫폼 기반 모바일 앱 개발 및 개선',
               rank: '팀원 / 대리',
               position: 'Android Application Developer',
@@ -552,7 +553,7 @@ const Resume = () => {
             {
               title: '정보보안전문가 인포섹(주) 채용연계 과정',
               organization: '한국정보기술연구원',
-              contents: '정보보호 시스템 운영, 침해사고 대응, 시스템 구축방법론, 스시템 진단, 웹 취약점 진단, 컨설팅',
+              contents: '정보보호 시스템 운영, 침해사고 대응, 시스템 구축방법론, 시스템 진단, 웹 취약점 진단, 컨설팅',
               period: '2014.02.24 - 2014.06.05(560 h)'
             },
             {
@@ -613,38 +614,8 @@ const Resume = () => {
       </section>
       
       <section>
-        <SubTitle>Working Experience</SubTitle>
-        <Divider />
-        <div>
-          <h3>Current Company (Project Manager, 2015/08 - present)</h3>
-          <ul>
-            <li>Lead team of 10 to oversee conception, requirement gathering, documentation and rollout.</li>
-            <li>Conduct troubleshooting, analysis and support. Gather user feedback, document bugs and change requests.</li>
-          </ul>
-        </div>
+        <WorkingExperience listItems = {userData.workingExperience} />
 
-        <div>
-          <h3>Second Company (System Analyst, 2011/06 - 2015/07)</h3>
-          <ul>
-            <li>Led team of 5 for application development</li>
-            <li>Coordinated with developers, support staff and vendors across Hong Kong, China, Taiwan</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>My first Company (Analyst Programmer, 2005/01 - 2011/05)</h3>
-          <ul>
-            <li>Develop multiple applications using Javascript, Java, PHP, Powerbuilder, Oracle</li>
-          </ul>
-        </div>
-      </section>
-
-      <section>
-        <h2>Projects</h2>
-        <ul>
-          <li><a href="https://github.com/casualwriter/casual-markdown">Casual-Markdown</a> - a lightweight markdown parser</li>
-          <li><a href="https://github.com/casualwriter/powerpage">Powerpage</a> - a lightweight browser for html applications</li>
-        </ul>
       </section>
 
       <section>

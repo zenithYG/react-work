@@ -101,12 +101,14 @@ export const MainTitle = styled.h1`
 export const SubTitle = styled.h2`
   color: #5581B0; 
   font-weight: 800;
+  padding-top: 20px;
 `;
 
 export const SectionTitle = styled.h3`
   padding-left: 5px;
   color: #000000; 
   font-weight: 700;
+  margin: 0;
 `;
 
 export const Container = styled.div`
@@ -169,10 +171,14 @@ export const SectionContainer = styled.div`
 export const HorizontalSectionContainer = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: bottom;
-  background-color: #f2f2f2;
+  align-items: end; 
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: start; 
+    padding: 10px;
+  }
 `;
 
 export const Section = styled.section`
-  padding-left: -40px; 
 `;

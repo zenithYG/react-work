@@ -92,15 +92,21 @@ export const calculateKoreanAge = (birthDate) => {
     }
     return age;
 }
-
 export const dateToString = (dateObj) => {
   if (dateObj && typeof dateObj === 'object' && dateObj.seconds !== undefined) {
     const date = new Date(dateObj.seconds * 1000);
-    return date.toLocaleDateString('ko-KR', { 
+    let dateString = date.toLocaleDateString('ko-KR', { 
       year: 'numeric', 
       month: '2-digit', 
       day: '2-digit' 
-    }).replace(/\./g, ''); // 날짜 문자열에서 점(.)을 제거
+    });
+
+    // 마지막 '.'을 제거
+    if (dateString.endsWith('.')) {
+      dateString = dateString.slice(0, -1);
+    }
+    
+    return dateString;
   }
   return dateObj; // dateObj가 객체가 아닌 경우 그대로 반환
 };
