@@ -34,6 +34,7 @@ const WorkingExperienceDate = styled.p`
 const WorkingSectionContainer = styled.p`
   padding-left: 15px; 
   line-height: 1.0;
+  background-color: #F6F6F6;
 `;
 
 const CompanyInfo = styled.p`
@@ -49,7 +50,7 @@ const ProjectSectionContainer = styled.div`
 `;
 
 const ProjectTitle = styled.h4`
-  padding-left: 5px;
+  padding-left: 0px;
   color: #000000; 
   font-weight: 700;
   font-size: 18px;
@@ -100,9 +101,17 @@ const WorkingExperience = ({ listItems }) => {
                             <ContentsItem>{project.subject}</ContentsItem>
                             {
                                 project.work.map((work, index) => (
-                                    <Section>
-                                        <ContentsItem> * {work}</ContentsItem>
-                                    </Section>
+                                    <div>
+                                        <ul> * {work}</ul>
+                                    </div>
+                                ))
+                            }
+                            <ContentsItem>기여도: {project.workPercent} | 사용 기술 : {project.technology}</ContentsItem>
+                            {
+                                project.result.map((result, index) => (
+                                    <div>
+                                        <ul> * {result}</ul>
+                                    </div>
                                 ))
                             }
                         </ProjectContentsContainer>

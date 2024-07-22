@@ -154,6 +154,7 @@ export const ListItem = styled.li`
 export const ContentsItem = styled.p`
   line-height: 1.0;
   font-weight: 500;
+  padding-left: 5px;
 `;
 
 export const ContentsSubItem = styled.p`
@@ -172,11 +173,11 @@ export const HorizontalSectionContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: end; 
+  background-color: #F6F6F6;
 
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: start; 
-    padding: 10px;
   }
 `;
 

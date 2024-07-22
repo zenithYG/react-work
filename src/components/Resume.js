@@ -612,11 +612,6 @@ const Resume = () => {
       <section>
         <ExecutiveSummary listItems={userData.executiveSummary} />
       </section>
-      
-      <section>
-        <WorkingExperience listItems = {userData.workingExperience} />
-
-      </section>
 
       <section>
         <EducationInfos listItems={userData.educationInfo} />
@@ -628,6 +623,10 @@ const Resume = () => {
 
       <section>
         <MilitaryInfo item ={userData.militaryInfo} />
+      </section>
+
+      <section>
+        <WorkingExperience listItems = {userData.workingExperience} />
       </section>
 
     </Container>
