@@ -114,7 +114,8 @@ import {
                     'DiffableDataSource를 활용한 Collection, Table개발',
                     'Flex, Pin 을 이용한 Code 기반 UI 개발',
                     '프로토콜지향 프로그래밍(POP) 전면 활용', 
-                    'Tuist 를 활용한 Xcode 프로젝트 유지관리'
+                    'Tuist 를 활용한 Xcode 프로젝트 유지관리',
+                    '데이터 계층별 모듈화 개발' 
                   ],
                   workPercent: '50%',
                   technology: 'Swift5, Bitbucket, Jira',
@@ -130,9 +131,11 @@ import {
                   sePeriod: calculateDurationCurrent('2024-02-28'),
                   subject: 'B2B 휴먼클라우드 서비스 뉴워커 iOS 앱 개발',
                   work :[
-                    '기존 ‘알바콜’ 앱을 ‘뉴워커’ 앱으로 전환 프로젝트 담당',
-                    '\'알바생/사장님\'파트 중 \'알바생\'파트 전반 담당',
-                    'MVC 디자인 패턴 사용',
+                    '신한 SOL mini 신규 개발 (이체, Third-Party 라이브러리 담당)',
+                    'MVVM 아키텍처, Clean 아키텍처를 활용한 Full Native 앱 개발',
+                    'RxSwift을 활용한 Reactive 구조 활용',
+                    'SnapKit 을 이용한 코드 기반 UI 개발',
+                    '프로토콜지향 프로그래밍(POP) 전면 활용',
                     'SwiftLint 활용, 코드 컨벤션 관리',
                     'Feature단위 모듈화 개발'
                   ],
