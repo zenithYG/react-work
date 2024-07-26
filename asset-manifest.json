@@ -1,15 +1,19 @@
 {
   "files": {
     "main.css": "/react-work/static/css/main.7c9751aa.css",
-    "main.js": "/react-work/static/js/main.0716bc25.js",
-    "static/js/453.23b354ac.chunk.js": "/react-work/static/js/453.23b354ac.chunk.js",
+    "main.js": "/react-work/static/js/main.f6de00ee.js",
+    "static/js/213.bc3ff45e.chunk.js": "/react-work/static/js/213.bc3ff45e.chunk.js",
+    "static/js/732.903de907.chunk.js": "/react-work/static/js/732.903de907.chunk.js",
+    "static/js/453.e6273392.chunk.js": "/react-work/static/js/453.e6273392.chunk.js",
     "index.html": "/react-work/index.html",
     "main.7c9751aa.css.map": "/react-work/static/css/main.7c9751aa.css.map",
-    "main.0716bc25.js.map": "/react-work/static/js/main.0716bc25.js.map",
-    "453.23b354ac.chunk.js.map": "/react-work/static/js/453.23b354ac.chunk.js.map"
+    "main.f6de00ee.js.map": "/react-work/static/js/main.f6de00ee.js.map",
+    "213.bc3ff45e.chunk.js.map": "/react-work/static/js/213.bc3ff45e.chunk.js.map",
+    "732.903de907.chunk.js.map": "/react-work/static/js/732.903de907.chunk.js.map",
+    "453.e6273392.chunk.js.map": "/react-work/static/js/453.e6273392.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7c9751aa.css",
-    "static/js/main.0716bc25.js"
+    "static/js/main.f6de00ee.js"
   ]
 }
