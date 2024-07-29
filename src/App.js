@@ -6,6 +6,7 @@ import SignIn from './components/SignIn';
 import Home from './components/Home';
 import Resume from './components/Resume';
 import Admin from './components/Admin';
+import Bridge from './components/Bridge';
 
 const Container = styled.div`
   display: flex;
@@ -39,7 +40,6 @@ const App = () => {
         <Title>WelCome, Zenith-Work</Title>
         <NavLinks>
           <Link to="/signup">회원가입</Link>
-          <Link to="/signin">로그인</Link>
         </NavLinks>
         <Routes>
           <Route path="/signup" element={<SignUp />} />
@@ -47,6 +47,7 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/bridge" element={<Bridge />} />
           <Route path="/" element={<Navigate to="/signin" />} />
           <Route path="*" element={<Navigate to="/signin" />} />
         </Routes>

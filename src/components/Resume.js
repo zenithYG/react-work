@@ -91,43 +91,39 @@ const Resume = () => {
   }
 
   return (
-    <Container ref={contentRef}>
+    <Container>
       <UpdateButton onClick={handleUpdateData}>Update User Data</UpdateButton>
       <UpdateButton onClick={handleExportPdf}>Export pdf</UpdateButton>
       <UpdateButton onClick={handleExportDocx}>Export docx</UpdateButton>
-      <CardContainer>
-        <Card>
-        <MainTitle>{userData.title}</MainTitle>
-        <InfoContainer>
-        <Info>
-            <Item>{userData.name} ({userData.chineseCharacter})</Item>
-            <Item>{userData.birthday} (만 {calculateKoreanAge(userData.birthday)}세) </Item>
-            <Item>{userData.email}</Item>
-            <Item>{userData.mobile}</Item>
-        </Info>
-        <Avatar />
-        </InfoContainer>
-    </Card>
-    </CardContainer>
-      <section>
-        <ExecutiveSummary listItems={userData.executiveSummary} />
-      </section>
-
-      <section>
-        <EducationInfos listItems={userData.educationInfo} />
-      </section>
-
-      <section>
-        <LicenseInfos listItems={userData.licenseInfo} />
-      </section>
-
-      <section>
-        <MilitaryInfo item ={userData.militaryInfo} />
-      </section>
-
-      <section>
-        <WorkingExperience listItems = {userData.workingExperience} />
-      </section>
+      <CardContainer  ref={contentRef}>
+          <Card>
+            <MainTitle>{userData.title}</MainTitle>
+            <InfoContainer>
+              <Info>
+                  <Item>{userData.name} ({userData.chineseCharacter})</Item>
+                  <Item>{userData.birthday} (만 {calculateKoreanAge(userData.birthday)}세) </Item>
+                  <Item>{userData.email}</Item>
+                  <Item>{userData.mobile}</Item>
+              </Info>
+            <Avatar />
+            </InfoContainer>
+          </Card>
+        </CardContainer>
+        <section>
+            <ExecutiveSummary listItems={userData.executiveSummary} />
+          </section>
+          <section>
+            <EducationInfos listItems={userData.educationInfo} />
+          </section>
+          <section>
+            <LicenseInfos listItems={userData.licenseInfo} />
+          </section>
+          <section>
+            <MilitaryInfo item ={userData.militaryInfo} />
+          </section>
+          <section>
+            <WorkingExperience listItems = {userData.workingExperience} />
+          </section>
 
     </Container>
   );

@@ -32,9 +32,8 @@ const WorkingExperienceDate = styled.p`
 `;
 
 const WorkingSectionContainer = styled.p`
-  padding-left: 15px; 
+  padding-left: 5px; 
   line-height: 1.0;
-  background-color: #F6F6F6;
 `;
 
 const CompanyInfo = styled.p`
@@ -86,7 +85,7 @@ const WorkingExperience = ({ listItems }) => {
                     <WorkingExperienceDate style={{fontWeight: 'bold' }}>({item.period})</WorkingExperienceDate>
                 </HorizontalSectionContainer>
                 <WorkingSectionContainer>
-                    <CompanyInfo>{item.businessInfo}</CompanyInfo>
+                    <CompanyInfo>{item.businessInfo} | {item.rank} | {item.position}</CompanyInfo>
                     <ContentsItem>{item.rank} | {item.position}</ContentsItem>
                 </WorkingSectionContainer>
                 <ProjectSectionContainer>

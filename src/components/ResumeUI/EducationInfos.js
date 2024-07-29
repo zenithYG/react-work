@@ -11,7 +11,7 @@ import {
 const EducationInfos = ({ listItems }) => {
   return (
     <section>
-      <SubTitle>Education</SubTitle>
+      <SubTitle>교육</SubTitle>
       <Divider />
       {listItems.map((item, index) => (
             <Section key={index}>

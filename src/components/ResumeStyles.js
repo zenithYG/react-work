@@ -27,7 +27,6 @@ export const CardContainer = styled.div`
   align-items: center;
   flex-direction: row;
   max-width: 100%;
-  background-color: #5b7fa4;
 `;
 
 export const InfoContainer = styled.div`
@@ -114,8 +113,8 @@ export const SectionTitle = styled.h3`
 export const Container = styled.div`
   font-family: Arial, sans-serif;
   line-height: 1.6;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 0px;
+  padding-right: 0px;
   padding-bottom: 20px;
   width: 100%; 
   max-width: 100%;
@@ -173,7 +172,6 @@ export const HorizontalSectionContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: end; 
-  background-color: #F6F6F6;
 
   @media (max-width: 768px) {
     flex-direction: column;
