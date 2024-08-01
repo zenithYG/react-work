@@ -10,7 +10,7 @@ import LicenseInfos from './ResumeUI/LicenseInfos'
 import MilitaryInfo from './ResumeUI/MilitaryInfo'
 import SchoolInfos from './ResumeUI/SchoolInfos'
 import WorkingExperience from './ResumeUI/WorkingExperience';
-import { handleUpdate } from './UpdateData';
+import { updateResume } from './UpdateData';
 
 import { 
   calculateKoreanAge
@@ -47,7 +47,7 @@ const Resume = () => {
   };
 
   const handleUpdateData = () => {
-    handleUpdate(user, handleUpdateDataCallback)
+    updateResume(user, handleUpdateDataCallback)
   }
 
   const handleUpdateDataCallback = () => {
@@ -62,7 +62,7 @@ const Resume = () => {
     const docRef = doc(db, 'Users', uid);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-      setUserData(docSnap.data());
+      setUserData(docSnap.data().resume);
     } else {
       console.log('No such document!');
     }

@@ -1,5 +1,5 @@
 import { db } from '../firebase';
-import { doc, updateDoc } from 'firebase/firestore';
+import { doc, updateDoc, setDoc } from 'firebase/firestore';
 import { 
     WorkPeriod,
     createDate, 
@@ -9,12 +9,28 @@ import {
     getCurrentTime
   } from '../utils/dateUtils';
 
-  export const handleUpdate = async (user, callback) => {
+  export const updateTeam = async (user, team, callback) => {
     if (user) {
       const userDocRef = doc(db, 'Users', user.uid);
       try {
         await updateDoc(userDocRef, {
-          title: 'iOS developer',
+          team: team
+        })
+        console.log('Data successfully written to Firestore');
+        callback();
+      } catch (error) {
+        console.error('Error writing document: ', error);
+      }
+    }
+  };
+
+  export const updateResume = async (user, callback) => {
+    if (user) {
+      const userDocRef = doc(db, 'Users', user.uid);
+      try {
+        await updateDoc(userDocRef, {
+          resume: {
+            title: 'iOS developer',
           name: '송연근',
           mobile: '+82-10-8725-8120',
           address: '경기도 부천시 원미구 부흥로 49',
@@ -112,10 +128,10 @@ import {
                     'RIBs 아키텍처, Clean 아키텍처를 활용한 Native 앱 개발',
                     'Concurrency, Combine를 활용한 비동기 프로그래밍 개발',
                     'DiffableDataSource를 활용한 Collection, Table개발',
-                    'Flex, Pin 을 이용한 Code 기반 UI 개발',
+                    'Flex, Pin 을 이용한 CodeBase UI 개발',
                     '프로토콜지향 프로그래밍(POP) 전면 활용', 
                     'Tuist 를 활용한 Xcode 프로젝트 유지관리',
-                    '데이터 계층별 모듈화 개발' 
+                    '비즈니스로직 계층별 모듈화된 개발' 
                   ],
                   workPercent: '50%',
                   technology: 'Swift5, Bitbucket, Jira',
@@ -134,10 +150,11 @@ import {
                     '신한 SOL mini 신규 개발 (이체, Third-Party 라이브러리 담당)',
                     'MVVM 아키텍처, Clean 아키텍처를 활용한 Full Native 앱 개발',
                     'RxSwift을 활용한 Reactive 구조 활용',
-                    'SnapKit 을 이용한 코드 기반 UI 개발',
+                    'SnapKit 을 이용한 CodeBase UI 개발',
                     '프로토콜지향 프로그래밍(POP) 전면 활용',
+                    'Tuist 를 활용한 Xcode 프로젝트 유지관리',
                     'SwiftLint 활용, 코드 컨벤션 관리',
-                    'Feature단위 모듈화 개발'
+                    'Feature단위 모듈화된 개발'
                   ],
                   workPercent: '50%',
                   technology: 'Swift5, Bitbucket, Jira',
@@ -503,7 +520,8 @@ import {
               organization: '한국산업인력공단',
               date: '2013.08.16'
             }
-          ]
+          ] 
+          }
         });
         
         callback();
