@@ -84,10 +84,11 @@ const WorkingExperience = ({ listItems }) => {
                     <WorkingExperienceDate>{dateToString(item.startDate)} - {dateToString(item.endDate)}</WorkingExperienceDate>
                     <WorkingExperienceDate style={{fontWeight: 'bold' }}>({item.period})</WorkingExperienceDate>
                 </HorizontalSectionContainer>
-                <WorkingSectionContainer>
-                    <CompanyInfo>{item.businessInfo} | {item.rank} | {item.position}</CompanyInfo>
-                    <ContentsItem>{item.rank} | {item.position}</ContentsItem>
-                </WorkingSectionContainer>
+                <HorizontalSectionContainer>
+                <CompanyInfo>{item.businessInfo}</CompanyInfo>
+                <CompanyInfo>{item.rank}</CompanyInfo>
+                <CompanyInfo>{item.businessInfo} | {item.rank} | {item.position}</CompanyInfo>
+                </HorizontalSectionContainer>
                 <ProjectSectionContainer>
                 {
                     item.projects.map((project, index) => (

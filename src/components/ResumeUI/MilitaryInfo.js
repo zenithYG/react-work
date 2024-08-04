@@ -11,7 +11,6 @@ import {
 } from '../../utils/dateUtils'
 
 const MilitaryInfo = ({ item }) => {
-
     return (
         <div>
         <SubTitle>병역정보</SubTitle>
