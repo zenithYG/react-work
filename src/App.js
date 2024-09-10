@@ -8,6 +8,7 @@ import Resume from './components/Resume';
 import Admin from './components/Admin';
 import Bridge from './components/Bridge';
 import TeamCraft from './components/TeamCraft';
+import Navbar from './components/Navbar';
 
 const Container = styled.div`
   display: flex;
@@ -38,10 +39,7 @@ const App = () => {
   return (
     <Router>
       <Container>
-        <Title>Zenith-Work</Title>
-        <NavLinks>
-          <Link to="/signup">회원가입</Link>
-        </NavLinks>
+      <Navbar />
         <Routes>
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />

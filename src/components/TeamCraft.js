@@ -136,7 +136,12 @@ const TeamCraft = () => {
           </tr>
         </tbody>
       </table>
-      <button className="complete-button" onClick={handleComplete}>완료</button>
+      <div> 
+        <button className="complete-button" onClick={handleComplete}>완료</button>
+        <button className="complete-button" onClick={handleComplete}>다음</button>
+      </div>
+      
+      
     </div>
   );
 };
