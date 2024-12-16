@@ -145,7 +145,7 @@ export const Section = styled.section`
 
 
 export const SectionContainer = styled.div`
-  padding: 10px 15px;
+  padding: 10px;
   background-color: #f9f9f9;
   margin-bottom: 15px;
   border-radius: 5px;
@@ -163,6 +163,7 @@ export const SectionTitle = styled.h3`
   font-size: 20px;
   font-weight: 600;
   color: #444;
+  margin-top: -5px;
   margin-bottom: 5px;
 `;
 

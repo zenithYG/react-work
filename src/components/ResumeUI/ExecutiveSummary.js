@@ -3,6 +3,7 @@ import {
     SubTitle,
     Divider,
     ListItem,
+    SectionContainer,
     ContentsItem
 } from '../ResumeStyles';
 
@@ -11,9 +12,11 @@ const ExecutiveSummary = ({ listItems }) => {
     <section>
       <SubTitle>Executive Summary</SubTitle>
       <Divider />
+      <SectionContainer>
         {listItems.map((item, index) => (
           <ContentsItem key={index}>{item}</ContentsItem>
         ))}
+      </SectionContainer>
     </section>
   );
 }

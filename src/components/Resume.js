@@ -27,6 +27,7 @@ import {
     SubTitle,
     Container,
     Divider,
+    Section,
     CardContainer
 } from './ResumeStyles';
 
@@ -113,21 +114,21 @@ const Resume = () => {
       </InfoContainer>
     </Card>
   </CardContainer>
-  <section>
+  <Section>
     <ExecutiveSummary listItems={userData.executiveSummary} />
-  </section>
-  <section>
+  </Section>
+  <Section>
     <EducationInfos listItems={userData.educationInfo} />
-  </section>
-  <section>
+  </Section>
+  <Section>
     <LicenseInfos listItems={userData.licenseInfo} />
-  </section>
-  <section>
+  </Section>
+  <Section>
     <MilitaryInfo item={userData.militaryInfo} />
-  </section>
-  <section>
+  </Section>
+  <Section>
     <WorkingExperience listItems={userData.workingExperience} />
-  </section>
+  </Section>
 </Container>
 
   );
