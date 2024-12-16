@@ -1,27 +1,32 @@
 import React from 'react';
 import {
-    SubTitle,
-    SectionTitle,
-    Divider,
-    SectionContainer,
-    ContentsItem
+  SubTitle,
+  SectionTitle,
+  Divider,
+  SectionContainer,
+  ContentsItem,
+  HighlightText
 } from '../ResumeStyles';
-import {
-    dateToString
-} from '../../utils/dateUtils'
+import { dateToString } from '../../utils/dateUtils';
 
 const MilitaryInfo = ({ item }) => {
-    return (
-        <div>
-        <SubTitle>병역정보</SubTitle>
-        <Divider />
+  return (
+    <section>
+      <SubTitle>병역정보</SubTitle>
+      <Divider />
+      <SectionContainer>
         <SectionTitle>{item.militaryExperience}</SectionTitle>
-        <SectionContainer>
-                <ContentsItem>{item.type} | {item.position} | {item.rank}</ContentsItem>
-                <ContentsItem>복무기간 : {dateToString(item.startDate)} - {dateToString(item.endDate)} ({item.discharger})</ContentsItem>
-        </SectionContainer>         
-        </div>
-    );
-}
+        <ContentsItem>
+          <strong>복무 유형:</strong> {item.type} | <strong>직책:</strong> {item.position} |{' '}
+          <strong>계급:</strong> {item.rank}
+        </ContentsItem>
+        <ContentsItem>
+          <strong>복무 기간:</strong> {dateToString(item.startDate)} - {dateToString(item.endDate)}{' '}
+          <HighlightText>({item.discharger})</HighlightText>
+        </ContentsItem>
+      </SectionContainer>
+    </section>
+  );
+};
 
 export default MilitaryInfo;

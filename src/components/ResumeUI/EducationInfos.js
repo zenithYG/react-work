@@ -1,11 +1,10 @@
 import React from 'react';
 import {
-    SubTitle,
-    SectionTitle,
-    Divider,
-    Section,
-    SectionContainer,
-    ContentsItem
+  SubTitle,
+  SectionTitle,
+  Divider,
+  SectionContainer,
+  ContentsItem
 } from '../ResumeStyles';
 
 const EducationInfos = ({ listItems }) => {
@@ -14,17 +13,21 @@ const EducationInfos = ({ listItems }) => {
       <SubTitle>교육</SubTitle>
       <Divider />
       {listItems.map((item, index) => (
-            <Section key={index}>
-              <SectionTitle>{item.title}</SectionTitle>
-                  <SectionContainer>
-                    <ContentsItem>교육기관 : {item.organization}</ContentsItem>
-                    <ContentsItem>기간 : {item.period}</ContentsItem>
-                    <ContentsItem>내용 : {item.contents}</ContentsItem>
-                  </SectionContainer>
-            </Section>
-        ))}
+        <SectionContainer key={index}>
+          <SectionTitle>{item.title}</SectionTitle>
+          <ContentsItem>
+            <strong>교육기관:</strong> {item.organization}
+          </ContentsItem>
+          <ContentsItem>
+            <strong>기간:</strong> {item.period}
+          </ContentsItem>
+          <ContentsItem>
+            <strong>내용:</strong> {item.contents}
+          </ContentsItem>
+        </SectionContainer>
+      ))}
     </section>
   );
-}
+};
 
 export default EducationInfos;

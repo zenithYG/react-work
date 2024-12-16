@@ -47,7 +47,7 @@ const SignIn = () => {
     event.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate('/bridge');
+      navigate('/resume');
     } catch (error) {
       console.error('로그인 에러:', error);
       alert('로그인 실패: ' + error.message);

@@ -97,19 +97,6 @@ export const MainTitle = styled.h1`
   }
 `;
 
-export const SubTitle = styled.h2`
-  color: #5581B0; 
-  font-weight: 800;
-  padding-top: 20px;
-`;
-
-export const SectionTitle = styled.h3`
-  padding-left: 5px;
-  color: #000000; 
-  font-weight: 700;
-  margin: 0;
-`;
-
 export const Container = styled.div`
   font-family: Arial, sans-serif;
   line-height: 1.6;
@@ -137,33 +124,7 @@ export const TitleContainer = styled.div`
   }
 `;
 
-export const Divider = styled.hr`
-  border: 0;
-  height: 1px;
-  background-color: #333;
-  margin-top: -10px;
-  margin-bottom: 20px;
-`;
-
-export const ListItem = styled.li`
-  line-height: 1.6;
-  font-weight: 500;
-`;
-
-export const ContentsItem = styled.p`
-  line-height: 1.0;
-  font-weight: 500;
-  padding-left: 5px;
-`;
-
 export const ContentsSubItem = styled.p`
-  line-height: 1.0;
-  font-weight: 500;
-`;
-
-export const SectionContainer = styled.div`
-  padding-left: 15px; 
-  margin-top: -10px;
   line-height: 1.0;
   font-weight: 500;
 `;
@@ -180,4 +141,71 @@ export const HorizontalSectionContainer = styled.div`
 `;
 
 export const Section = styled.section`
+`;
+
+
+export const SectionContainer = styled.div`
+  padding: 10px 15px;
+  background-color: #f9f9f9;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+`;
+
+export const SubTitle = styled.h2`
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+`;
+
+export const SectionTitle = styled.h3`
+  font-size: 20px;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 5px;
+`;
+
+export const Divider = styled.hr`
+  border: none;
+  height: 1px;
+  background-color: #ddd;
+  margin: 10px 0;
+`;
+
+export const ContentsItem = styled.p`
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+  margin: 5px 0;
+`;
+
+export const ListContainer = styled.ul`
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-top: 10px;
+`;
+
+export const ListItem = styled.li`
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+`;
+
+export const HorizontalContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+`;
+
+export const HighlightText = styled.span`
+  font-weight: bold;
+  color: #2a73cc;
 `;
