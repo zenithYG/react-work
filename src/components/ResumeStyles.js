@@ -141,6 +141,7 @@ export const HorizontalSectionContainer = styled.div`
 `;
 
 export const Section = styled.section`
+padding: 10px;
 `;
 
 

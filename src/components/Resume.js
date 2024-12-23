@@ -12,23 +12,23 @@ import SchoolInfos from './ResumeUI/SchoolInfos'
 import WorkingExperience from './ResumeUI/WorkingExperience';
 import { updateResume } from './UpdateData';
 
-import { 
+import {
   calculateKoreanAge
 } from '../utils/dateUtils';
 
 import {
-    UpdateButton,
-    Card,
-    Info,
-    InfoContainer,
-    Item,
-    Avatar,
-    MainTitle,
-    SubTitle,
-    Container,
-    Divider,
-    Section,
-    CardContainer
+  UpdateButton,
+  Card,
+  Info,
+  InfoContainer,
+  Item,
+  Avatar,
+  MainTitle,
+  SubTitle,
+  Container,
+  Divider,
+  Section,
+  CardContainer
 } from './ResumeStyles';
 
 
@@ -93,43 +93,45 @@ const Resume = () => {
 
   return (
     <Container style={{ marginTop: '60px', overflowY: 'auto', height: 'calc(100vh - 60px)' }}>
-  <UpdateButton onClick={handleUpdateData}>Update User Data</UpdateButton>
-  <UpdateButton onClick={handleExportPdf}>Export pdf</UpdateButton>
-  <UpdateButton onClick={handleExportDocx}>Export docx</UpdateButton>
-  <CardContainer ref={contentRef}>
-    <Card>
-      <MainTitle>{userData.title}</MainTitle>
-      <InfoContainer>
-        <Info>
-          <Item>
-            {userData.name} ({userData.chineseCharacter})
-          </Item>
-          <Item>
-            {userData.birthday} (만 {calculateKoreanAge(userData.birthday)}세)
-          </Item>
-          <Item>{userData.email}</Item>
-          <Item>{userData.mobile}</Item>
-        </Info>
-        <Avatar />
-      </InfoContainer>
-    </Card>
-  </CardContainer>
-  <Section>
-    <ExecutiveSummary listItems={userData.executiveSummary} />
-  </Section>
-  <Section>
-    <EducationInfos listItems={userData.educationInfo} />
-  </Section>
-  <Section>
-    <LicenseInfos listItems={userData.licenseInfo} />
-  </Section>
-  <Section>
-    <MilitaryInfo item={userData.militaryInfo} />
-  </Section>
-  <Section>
-    <WorkingExperience listItems={userData.workingExperience} />
-  </Section>
-</Container>
+      <UpdateButton onClick={handleUpdateData}>Update User Data</UpdateButton>
+      <UpdateButton onClick={handleExportPdf}>Export pdf</UpdateButton>
+      <UpdateButton onClick={handleExportDocx}>Export docx</UpdateButton>
+      <div ref={contentRef}>
+      <CardContainer>
+        <Card>
+          <MainTitle>{userData.title}</MainTitle>
+          <InfoContainer>
+            <Info>
+              <Item>
+                {userData.name} ({userData.chineseCharacter})
+              </Item>
+              <Item>
+                {userData.birthday} (만 {calculateKoreanAge(userData.birthday)}세)
+              </Item>
+              <Item>{userData.email}</Item>
+              <Item>{userData.mobile}</Item>
+            </Info>
+            <Avatar />
+          </InfoContainer>
+        </Card>
+      </CardContainer>
+      <Section>
+        <ExecutiveSummary listItems={userData.executiveSummary} />
+      </Section>
+      <Section>
+        <EducationInfos listItems={userData.educationInfo} />
+      </Section>
+      <Section>
+        <LicenseInfos listItems={userData.licenseInfo} />
+      </Section>
+      <Section>
+        <MilitaryInfo item={userData.militaryInfo} />
+      </Section>
+      <Section>
+        <WorkingExperience listItems={userData.workingExperience} />
+      </Section>
+      </div>
+    </Container>
 
   );
 };
