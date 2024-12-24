@@ -93,9 +93,14 @@ const Resume = () => {
 
   return (
     <Container style={{ marginTop: '60px', overflowY: 'auto', height: 'calc(100vh - 60px)' }}>
-      <UpdateButton onClick={handleUpdateData}>Update User Data</UpdateButton>
-      <UpdateButton onClick={handleExportPdf}>Export pdf</UpdateButton>
-      <UpdateButton onClick={handleExportDocx}>Export docx</UpdateButton>
+      {
+        userData.admin && (
+          <>
+          <UpdateButton onClick={handleUpdateData}>Update User Data</UpdateButton>
+          <UpdateButton onClick={handleExportPdf}>Export pdf</UpdateButton>
+          <UpdateButton onClick={handleExportDocx}>Export docx</UpdateButton>
+          </>
+      )}
       <div ref={contentRef}>
       <CardContainer>
         <Card>
@@ -117,6 +122,9 @@ const Resume = () => {
       </CardContainer>
       <Section>
         <ExecutiveSummary listItems={userData.executiveSummary} />
+      </Section>
+      <Section>
+        <SchoolInfos listItems={userData.schoolInfo} />
       </Section>
       <Section>
         <EducationInfos listItems={userData.educationInfo} />

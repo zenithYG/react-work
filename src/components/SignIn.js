@@ -70,7 +70,6 @@ const SignIn = () => {
         placeholder="비밀번호"
       />
       <Button type="submit">로그인</Button>
-      <Link to="/signup">계정이 없으신가요? 회원가입</Link>
     </Form>
   );
 };
