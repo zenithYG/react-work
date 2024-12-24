@@ -186,7 +186,7 @@ const Resume = () => {
               <Item>{userData.email}</Item>
               <Item>{userData.mobile}</Item>
             </Info>
-            <Avatar />
+            <Avatar image={"https://ssl.pstatic.net/melona/libs/1520/1520931/7505f9958c128ef66ed0_20241220144153452.png"}/>
           </InfoContainer>
         </Card>
       </CardContainer>
