@@ -29,6 +29,12 @@ export const CardContainer = styled.div`
   max-width: 100%;
 `;
 
+export const AdminContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 30%;
+`;
+
 export const InfoContainer = styled.div`
   display: flex;
   justify-content: right;

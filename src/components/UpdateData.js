@@ -1,5 +1,6 @@
 import { db } from '../firebase';
-import { doc, updateDoc, setDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
+import toast from "react-hot-toast"; 
 import { 
     WorkPeriod,
     createDate, 
@@ -8,6 +9,37 @@ import {
     calculateTotalDuration,
     getCurrentTime
   } from '../utils/dateUtils';
+
+  export const updateToken = async (token, expiredDate) => {
+    if (token) {
+      try {
+        const tokenRef = doc(db, "Tokens", token);
+  
+        // 문서가 존재하는지 확인
+        const tokenSnapshot = await getDoc(tokenRef);
+  
+        if (tokenSnapshot.exists()) {
+          // 문서가 존재하면 업데이트
+          await updateDoc(tokenRef, {
+            expiredDate: expiredDate,
+          });
+          toast.success("토큰 업데이트가 완료되었습니다!");
+        } else {
+          // 문서가 존재하지 않으면 새로 생성
+          await setDoc(tokenRef, {
+            expiredDate: expiredDate,
+          });
+          toast.success("새 토큰이 생성되었습니다!");
+        }
+      } catch (error) {
+        // 오류 처리
+        toast.error("토큰 업로드 중 오류가 발생했습니다.");
+        console.error("Error updating token:", error);
+      }
+    } else {
+      toast.error("토큰이 없습니다. 업로드 실패!");
+    }
+  };
 
   export const updateTeam = async (user, team, callback) => {
     if (user) {
@@ -30,6 +62,7 @@ import {
       try {
         await updateDoc(userDocRef, {
           resume: {
+            admin: true,
             title: 'iOS developer',
           name: '송연근',
           mobile: '+82-10-8725-8120',
@@ -201,9 +234,9 @@ import {
                 },
                 {
                   title: '알바콜 앱 개선',
-                  seStartDate: createDate('2020-01-02'),
-                  seEndDate: createDate('2021-04-30'),
-                  sePeriod: calculateDuration('2020-01-02', '2021-04-30'),
+                  siStartDate: createDate('2020-01-02'),
+                  siEndDate: createDate('2021-04-30'),
+                  siPeriod: calculateDuration('2020-01-02', '2021-04-30'),
                   subject: '인크루트알바콜에서 제공하는 iOS 앱 알바콜 유지보수 및 기능개선',
                   work :[
                     '4.5.0 ~ 4.7.0 버전 버그 대응 및 업데이트',
@@ -221,9 +254,9 @@ import {
                 },
                 {
                   title: '인크루트 - 취업 비서 앱 개선',
-                  seStartDate: createDate('2020-01-02'),
-                  seEndDate: createDate('2022-05-22'),
-                  sePeriod: calculateDuration('2020-01-02', '2022-05-22'),
+                  siStartDate: createDate('2020-01-02'),
+                  siEndDate: createDate('2022-05-22'),
+                  siPeriod: calculateDuration('2020-01-02', '2022-05-22'),
                   subject: '구인, 구직 서비스 앱 \'인크루트-취업비서\' 유지 보수, 기능 개선',
                   work :[
                     '3.4.2 ~ 3.7.0 버전 버그 대응 및 업데이트',
@@ -243,9 +276,9 @@ import {
                 },
                 {
                   title: '인크루트 - 취업운세 앱 개발 및 개선',
-                  seStartDate: createDate('2020-01-02'),
-                  seEndDate: createDate('2022-05-22'),
-                  sePeriod: calculateDuration('2020-01-02', '2022-05-22'),
+                  siStartDate: createDate('2020-01-02'),
+                  siEndDate: createDate('2022-05-22'),
+                  siPeriod: calculateDuration('2020-01-02', '2022-05-22'),
                   subject: '운세별 맟춤 구직 정보 제공 앱 \'인크루트-취업운세\' 앱을 유지 보수, 기능 개선',
                   work :[
                     '2.2.8 ~ 2.4.0 버전 버그 대응 및 업데이트',

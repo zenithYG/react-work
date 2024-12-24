@@ -8,7 +8,7 @@ import Resume from './components/Resume';
 import Admin from './components/Admin';
 import Bridge from './components/Bridge';
 import TeamCraft from './components/TeamCraft';
-import Navbar from './components/Navbar';
+import TokenLogin from './components/TokenLogin';
 
 const Container = styled.div`
   display: flex;
@@ -43,6 +43,7 @@ const App = () => {
         <Routes>
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="/tokenLogin" element={<TokenLogin />} />
           <Route path="/home" element={<Home />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/admin" element={<Admin />} />
