@@ -12,6 +12,7 @@ import SchoolInfos from './ResumeUI/SchoolInfos'
 import WorkingExperience from './ResumeUI/WorkingExperience';
 import { updateResume, updateToken } from './UpdateData';
 import { useLocation } from "react-router-dom";
+import avatar from '../images/yg.jpg';
 
 import {
   calculateKoreanAge
@@ -39,8 +40,11 @@ const Resume = () => {
 
   const contentRef = useRef();
   const location = useLocation();
-
   const [token, setGeneratedToken] = useState(''); // 생성된 토큰을 상태로 관리
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+  const [admin, setAdmin] = useState(false);
 
   // 토큰 생성 함수
   const generateToken = () => {
@@ -79,6 +83,10 @@ const Resume = () => {
     fetchUserData(user.uid)
   }
 
+  const updateAdminState = (isAdmin) => {
+    setAdmin(isAdmin);
+  };
+
   // 클립보드 복사 함수
   const saveToken = () => {
     const decodedData = JSON.parse(atob(token));
@@ -95,19 +103,13 @@ const Resume = () => {
       return null;
     }
   }
-  
-  const [userData, setUserData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(null);
 
   const fetchUserDataUsingToken = async (token) => {
     const docRef = doc(db, 'Users', token);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       const data = docSnap.data().resume;
-      // admin 값을 false로 수정
-      data.admin = false;
-      // 수정된 데이터를 상태에 설정
+      console.log(data);
       setUserData(data);
     } else {
       console.log('No such document!');
@@ -130,10 +132,12 @@ const Resume = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
+        updateAdminState(true);
         fetchUserData(user.uid);
       } else {
         if (location.state?.token) {
           restoreToken(location.state?.token);
+          updateAdminState(false); 
         }
         setLoading(false);
       }
@@ -151,66 +155,62 @@ const Resume = () => {
   }
 
   return (
-    <Container style={{ marginTop: '60px', overflowY: 'auto', height: 'calc(100vh - 60px)' }}>
-      {
-        userData.admin && (
-          <AdminContainer>
+    <Container style={{ marginTop: '60px', height: 'calc(100vh - 60px)' }}>
+      {/* 관리자 기능 표시 */}
+      {admin && (
+        <AdminContainer>
           <UpdateButton onClick={handleUpdateData}>Update User Data</UpdateButton>
           <UpdateButton onClick={handleExportPdf}>Export pdf</UpdateButton>
           <UpdateButton onClick={handleExportDocx}>Export docx</UpdateButton>
-          {/* MakeToken 버튼 클릭 시 토큰 생성 */}
-      <UpdateButton onClick={generateToken}>MakeToken</UpdateButton>
-
-{/* 생성된 토큰 표시 */}
-{token && (
-  <div>
-    <p>Generated Token: {token}</p>
-    {/* 클립보드 복사 버튼 */}
-    <UpdateButton onClick={saveToken}>SaveToken</UpdateButton>
-  </div>
-)}
-          </AdminContainer>
+          <UpdateButton onClick={generateToken}>MakeToken</UpdateButton>
+          {token && (
+            <div>
+              <p>Generated Token: {token}</p>
+              <UpdateButton onClick={saveToken}>SaveToken</UpdateButton>
+            </div>
+          )}
+        </AdminContainer>
       )}
+      {/* 사용자 정보 표시 */}
       <div ref={contentRef}>
-      <CardContainer>
-        <Card>
-          <MainTitle>{userData.title}</MainTitle>
-          <InfoContainer>
-            <Info>
-              <Item>
-                {userData.name} ({userData.chineseCharacter})
-              </Item>
-              <Item>
-                {userData.birthday} (만 {calculateKoreanAge(userData.birthday)}세)
-              </Item>
-              <Item>{userData.email}</Item>
-              <Item>{userData.mobile}</Item>
-            </Info>
-            <Avatar image={"https://ssl.pstatic.net/melona/libs/1520/1520931/7505f9958c128ef66ed0_20241220144153452.png"}/>
-          </InfoContainer>
-        </Card>
-      </CardContainer>
-      <Section>
-        <ExecutiveSummary listItems={userData.executiveSummary} />
-      </Section>
-      <Section>
-        <SchoolInfos listItems={userData.schoolInfo} />
-      </Section>
-      <Section>
-        <EducationInfos listItems={userData.educationInfo} />
-      </Section>
-      <Section>
-        <LicenseInfos listItems={userData.licenseInfo} />
-      </Section>
-      <Section>
-        <MilitaryInfo item={userData.militaryInfo} />
-      </Section>
-      <Section>
-        <WorkingExperience listItems={userData.workingExperience} />
-      </Section>
+        <CardContainer>
+          <Card>
+            <MainTitle>{userData.title}</MainTitle>
+            <InfoContainer>
+              <Info>
+                <Item>
+                  {userData.name} ({userData.chineseCharacter})
+                </Item>
+                <Item>
+                  {userData.birthday} (만 {calculateKoreanAge(userData.birthday)}세)
+                </Item>
+                <Item>{userData.email}</Item>
+                <Item>{userData.mobile}</Item>
+              </Info>
+              <Avatar image={avatar} />
+            </InfoContainer>
+          </Card>
+        </CardContainer>
+        <Section>
+          <ExecutiveSummary listItems={userData.executiveSummary} />
+        </Section>
+        <Section>
+          <SchoolInfos listItems={userData.schoolInfo} />
+        </Section>
+        <Section>
+          <EducationInfos listItems={userData.educationInfo} />
+        </Section>
+        <Section>
+          <LicenseInfos listItems={userData.licenseInfo} />
+        </Section>
+        <Section>
+          <MilitaryInfo item={userData.militaryInfo} />
+        </Section>
+        <Section>
+          <WorkingExperience listItems={userData.workingExperience} />
+        </Section>
       </div>
     </Container>
-
   );
 };
 

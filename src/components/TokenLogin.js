@@ -79,7 +79,7 @@ const TokenLogin = () => {
       }
     } catch (error) {
       console.error("토큰 로그인 에러:", error);
-      alert("로그인 실패: " + error.message);
+      alert("로그인 실패, 토큰을 확인해주세요");
     }
   };
 
