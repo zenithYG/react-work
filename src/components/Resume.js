@@ -51,7 +51,7 @@ const Resume = () => {
 
     const currentDate = new Date(); // 현재 날짜
     const expiredDate = new Date(currentDate); // 새로운 Date 객체 생성
-    expiredDate.setDate(currentDate.getDate() + 3); // 3일 추가
+    expiredDate.setDate(currentDate.getDate() + 15); // 15일 추가
     // 날짜를 ISO 형식으로 변환 (YYYY-MM-DD)
     const formattedExpiredDate = expiredDate.toISOString().split('T')[0];
 
