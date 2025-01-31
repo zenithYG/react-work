@@ -92,9 +92,20 @@ const WorkingExperience = ({ listItems }) => {
 
           {item.projects.map((project, projectIndex) => (
             <ProjectContainer key={projectIndex}>
-              <ProjectTitle>{project.title}</ProjectTitle>
+              <ProjectTitle>{project.title} {project.totalDate && `(${project.totalDate})`}</ProjectTitle>
               <ProjectDetails>
-                {dateToString(project.siStartDate)} - {dateToString(project.siEndDate)} ({project.siPeriod})
+                {(project.siStartDate || project.siEndDate) && (
+                  <>
+                    개발 : {dateToString(project.siStartDate)} - {dateToString(project.siEndDate)} ({project.siPeriod})
+                  </>
+                )}
+
+                {(project.seStartDate || project.seEndDate) && (
+                  <>
+                    <br />
+                    운영 : {dateToString(project.seStartDate)} - {dateToString(project.seEndDate)} ({project.sePeriod})
+                  </>
+                )}
               </ProjectDetails>
               <ContentsItem>{project.subject}</ContentsItem>
               <List>

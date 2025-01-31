@@ -23,7 +23,7 @@ export const calculateDuration = (startDate, endDate) => {
     // 연도가 0이면 개월만 리턴
     if (diffInYears === 0) {
       if (diffInMonths === 0) {
-        return `1 개월`;  
+        return `1개월`;  
       }
       return `${diffInMonths}개월`;
     }

@@ -133,22 +133,8 @@ import {
               revenue: '35조 7,517억 9,800만 (2023.12.IFRS 연결)',
               projects: [
                 {
-                  title: '신한 슈퍼 SOL iOS 앱 고도화(선도개발)',
-                  siStartDate: createDate('2024-02-29'),
-                  siEndDate: createDate('2024-06-30'),
-                  siPeriod: calculateDuration('2024-02-29', '2024-06-30'),
-                  subject: '\'신한 슈퍼 SOL\' 서비스 \'신한SOL뱅크\' 앱 기반으로 개선 7월에 진행될 슈퍼 SOL 전면개편 프로젝트의 기반으로 사용될 선도개발 프로젝트 진행',
-                  work :[
-                    '기존에 유지보수 중이던 \'신한SOL뱅크\' fork 및 개발 진행에 필요한 환경 설정',
-                    '변경된 프로젝트 bundle id 에 맞는 Third-party 라이브러리 수정',
-                    '신한 슈퍼 SOL 기동, 메인, 홈 로직 및 UI 개선'
-                  ],
-                  workPercent: '50%',
-                  technology: 'Swift5, Bitbucket, Jira',
-                  result: [ '프로젝트 완료 (선도 개발 완료된 버전 그룹장 시연)' ]
-                },
-                {
                   title: '신한 쏠뱅크 앱 개발',
+                  totalDate: calculateDurationCurrent('2022-05-23'),
                   siStartDate: createDate('2022-05-23'),
                   siEndDate: createDate('2023-12-06'),
                   seStartDate: createDate('2023-12-06'),
@@ -171,7 +157,24 @@ import {
                   result: [ '프로젝트 완료 MAU(월간활성사용자수) 52만 유지중 ( Android 유저는 제외 )' ] 
                 },
                 {
+                  title: '신한 슈퍼 SOL iOS 앱 고도화(선도개발)',
+                  totalDate: calculateDuration('2024-02-29', '2024-06-30'),
+                  siStartDate: createDate('2024-02-29'),
+                  siEndDate: createDate('2024-06-30'),
+                  siPeriod: calculateDuration('2024-02-29', '2024-06-30'),
+                  subject: '\'신한 슈퍼 SOL\' 서비스 \'신한SOL뱅크\' 앱 기반으로 개선 7월에 진행될 슈퍼 SOL 전면개편 프로젝트의 기반으로 사용될 선도개발 프로젝트 진행',
+                  work :[
+                    '기존에 유지보수 중이던 \'신한SOL뱅크\' fork 및 개발 진행에 필요한 환경 설정',
+                    '변경된 프로젝트 bundle id 에 맞는 Third-party 라이브러리 수정',
+                    '신한 슈퍼 SOL 기동, 메인, 홈 로직 및 UI 개선'
+                  ],
+                  workPercent: '50%',
+                  technology: 'Swift5, Bitbucket, Jira',
+                  result: [ '프로젝트 완료 (선도 개발 완료된 버전 그룹장 시연)' ]
+                },
+                {
                   title: '신한 쏠미니 앱 개발',
+                  totalDate: calculateDurationCurrent('2023-04-19'),
                   siStartDate: createDate('2023-04-19'),
                   siEndDate: createDate('2024-02-28'),
                   seStartDate: createDate('2024-02-28'),
@@ -215,6 +218,7 @@ import {
               projects: [
                 {
                   title: '뉴워커 앱 개발',
+                  totalDate: calculateDuration('2021-10-01T00:00:00', '2022-05-22T00:00:00'),
                   siStartDate: createDate('2021-10-01T00:00:00'),
                   siEndDate: createDate('2022-04-30T00:00:00'),
                   seStartDate: createDate('2022-04-30T00:00:00'),
@@ -234,6 +238,7 @@ import {
                 },
                 {
                   title: '알바콜 앱 개선',
+                  totalDate: calculateDuration('2020-01-02', '2021-04-30'),
                   siStartDate: createDate('2020-01-02'),
                   siEndDate: createDate('2021-04-30'),
                   siPeriod: calculateDuration('2020-01-02', '2021-04-30'),
@@ -254,6 +259,7 @@ import {
                 },
                 {
                   title: '인크루트 - 취업 비서 앱 개선',
+                  totalDate: calculateDuration('2020-01-02', '2022-05-22'),
                   siStartDate: createDate('2020-01-02'),
                   siEndDate: createDate('2022-05-22'),
                   siPeriod: calculateDuration('2020-01-02', '2022-05-22'),
@@ -276,6 +282,7 @@ import {
                 },
                 {
                   title: '인크루트 - 취업운세 앱 개발 및 개선',
+                  totalDate: calculateDuration('2020-01-02', '2022-05-22'),
                   siStartDate: createDate('2020-01-02'),
                   siEndDate: createDate('2022-05-22'),
                   siPeriod: calculateDuration('2020-01-02', '2022-05-22'),
@@ -309,6 +316,7 @@ import {
               projects: [
                 {
                   title: '스타일 터치 앱 개발',
+                  totalDate: calculateDuration('2019-04-01', '2019-12-31'),
                   siStartDate: createDate('2019-04-01'),
                   siEndDate: createDate('2019-12-31'),
                   siPeriod: calculateDuration('2019-04-01', '2019-12-31'),
@@ -346,6 +354,7 @@ import {
               projects: [
                 {
                   title: 'LG U+ 스마트상담 (소호)',
+                  totalDate: calculateDuration('2018-11-1', '2019-01-25'),
                   siStartDate: createDate('2018-11-13'),
                   siEndDate: createDate('2019-01-25'),
                   siPeriod: calculateDuration('2018-11-1', '2019-01-25'),
@@ -362,6 +371,7 @@ import {
                 },
                 {
                   title: 'LG U+ 그룹웨어 iOS 메신저 개발',
+                  totalDate: calculateDuration('2018-06-01', '2018-10-30'),
                   siStartDate: createDate('2018-06-01'),
                   siEndDate: createDate('2018-10-30'),
                   siPeriod: calculateDuration('2018-06-01', '2018-10-30'),
@@ -378,6 +388,7 @@ import {
                 },
                 {
                   title: 'LG U+ 스마트 가입 앱 기능개선',
+                  totalDate: calculateDuration('2018-05-01', '2018-05-30'),
                   siStartDate: createDate('2018-05-01'),
                   siEndDate: createDate('2018-05-30'),
                   siPeriod: calculateDuration('2018-05-01', '2018-05-30'),
@@ -394,6 +405,7 @@ import {
                 },
                 {
                   title: 'LG U+ 스마트 상담 앱 개발',
+                  totalDate: calculateDuration('2018-01-02', '2018-05-01'),
                   siStartDate: createDate('2018-01-02'),
                   siEndDate: createDate('2018-05-01'),
                   siPeriod: calculateDuration('2018-01-02', '2018-05-01'),
@@ -412,6 +424,7 @@ import {
                 },
                 {
                   title: 'LG U+고객센터 앱 – 위젯, APNs 구현',
+                  totalDate: calculateDuration('2017-08-21', '2017-12-14'),
                   siStartDate: createDate('2017-08-21'),
                   siEndDate: createDate('2017-12-14'),
                   siPeriod: calculateDuration('2017-08-21', '2017-12-14'),
@@ -446,6 +459,7 @@ import {
               projects: [
                 {
                   title: 'PUFF 앱 개발',
+                  totalDate: calculateDuration('2017-02-05', '2017-08-14'),
                   siStartDate: createDate('2017-02-05'),
                   siEndDate: createDate('2017-08-14'),
                   siPeriod: calculateDuration('2017-02-05', '2017-08-14'),
@@ -464,6 +478,7 @@ import {
                 },
                 {
                   title: 'OMG (Oh My Gif) 앱 개발',
+                  totalDate: calculateDuration('2016-05-23', '2016-11-14'),
                   siStartDate: createDate('2016-05-23'),
                   siEndDate: createDate('2016-11-14'),
                   siPeriod: calculateDuration('2016-05-23', '2016-11-14'),
@@ -485,6 +500,7 @@ import {
                 },
                 {
                   title: 'Boodl 앱 개발',
+                  totalDate: calculateDuration('2015-11-04', '2016-09-08'),
                   siStartDate: createDate('2015-11-04T00:00:00'),
                   siEndDate: createDate('2016-09-08T00:00:00'),
                   siPeriod: calculateDuration('2015-11-04', '2016-09-08'),
