@@ -49,8 +49,8 @@ const App = () => {
           <Route path="/admin" element={<Admin />} />
           <Route path="/bridge" element={<Bridge />} />
           <Route path="/teamCraft" element={<TeamCraft />} />
-          <Route path="/" element={<Navigate to="/tokenLogin" />} />
-          <Route path="*" element={<Navigate to="/tokenLogin" />} />
+          <Route path="/" element={<Navigate to="/signin" />} />
+          <Route path="*" element={<Navigate to="/signin" />} />
         </Routes>
       </Container>
     </Router>
