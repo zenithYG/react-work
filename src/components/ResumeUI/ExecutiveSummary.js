@@ -10,7 +10,7 @@ import {
 const ExecutiveSummary = ({ listItems }) => {
   return (
     <section>
-      <SubTitle>Executive Summary</SubTitle>
+      <SubTitle>요약</SubTitle>
       <Divider />
       <SectionContainer>
         {listItems.map((item, index) => (
