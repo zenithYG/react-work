@@ -10,6 +10,7 @@ import LicenseInfos from './ResumeUI/LicenseInfos'
 import MilitaryInfo from './ResumeUI/MilitaryInfo'
 import SchoolInfos from './ResumeUI/SchoolInfos'
 import WorkingExperience from './ResumeUI/WorkingExperience';
+import ResearchProject from './ResumeUI/ResearchProjects';
 import { updateResume, updateToken } from './UpdateData';
 import { useLocation } from "react-router-dom";
 import avatar from '../images/yg.jpg';
@@ -80,6 +81,14 @@ const Resume = () => {
     });
   };
 
+  const handleExportPdf = () => {
+    if (!contentRef.current) {
+      console.error("❌ PDF 변환할 DOM 요소가 없습니다!");
+      return;
+    }
+
+    exportToPdf(contentRef.current, "resume.pdf");
+  };
 
   const fetchUserDataUsingToken = async (uid) => {
     console.log(`📌 Token 기반 사용자 데이터 로딩 → uid: ${uid}`);
@@ -197,8 +206,9 @@ const Resume = () => {
 
       <AdminContainer>
         <UpdateButton onClick={handleUpdateData}>Update User Data</UpdateButton>
+        <UpdateButton onClick={handleExportPdf}>Export pdf</UpdateButton>
         {/* <UpdateButton onClick={handleUpdateData}>Update User Data</UpdateButton>
-          <UpdateButton onClick={handleExportPdf}>Export pdf</UpdateButton>
+          
           <UpdateButton onClick={handleExportDocx}>Export docx</UpdateButton>
           <UpdateButton onClick={generateToken}>MakeToken</UpdateButton> */}
         {/* 
@@ -263,6 +273,12 @@ const Resume = () => {
         <Section>
           {console.log("📌 WorkingExperience 렌더링")}
           <WorkingExperience listItems={userData.workingExperience} />
+        </Section>
+
+        <Section>
+          {console.log("📌 researchProject 렌더링")}
+          {console.log(userData.researchProject.length)}
+          <ResearchProject researchProject={userData.researchProject} />
         </Section>
       </div>
     </Container>

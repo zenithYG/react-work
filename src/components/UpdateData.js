@@ -134,7 +134,7 @@ export const updateResume = async (user, callback) => {
               revenue: '35조 7,517억 9,800만 (2023.12.IFRS 연결)',
               projects: [
                 {
-                  title: '슈퍼SOL 개편',
+                  title: '슈퍼SOL 개발',
                   totalDate: calculateDurationCurrent('2025-02-01'),
                   siStartDate: createDate('2025-02-01'),
                   siPeriod: '진행중',
@@ -181,27 +181,6 @@ export const updateResume = async (user, callback) => {
                   result: ['장애 대응 및 고객 민원 반영하여 정상적인 앱 서비스 제공 중']
                 },
                 {
-                  title: '신한 SOL 전면 개편',
-                  totalDate: calculateDuration('2022-05-23', '2023-12-06'),
-                  siStartDate: createDate('2022-05-23'),
-                  siEndDate: createDate('2023-12-06'),
-                  siPeriod: calculateDuration('2022-05-23', '2023-12-06'),
-                  subject: '하이브리드 앱으로 구현되어있는 SOL 앱 Native 앱으로 전면 개편',
-                  work: [
-                    '신한 SOL뱅크 전면 개편 개발 (전체메뉴, 상품, 혜택, 머니버스(마이데이터 서비스), 쏠패스(QR인증), STAX 담당)',
-                    'RIBs 아키텍처, Clean 아키텍처를 활용한 Native 앱 개발',
-                    'Concurrency, Combine를 활용한 비동기 프로그래밍 개발',
-                    'DiffableDataSource를 활용한 Collection, Table개발',
-                    'Flex, Pin 을 이용한 CodeBase UI 개발',
-                    '프로토콜지향 프로그래밍(POP) 전면 활용',
-                    'Tuist 를 활용한 Xcode 프로젝트 유지관리',
-                    '비즈니스로직 계층별 모듈화된 개발'
-                  ],
-                  workPercent: '50%',
-                  technology: 'Swift5, Bitbucket, Jira',
-                  result: ['프로젝트 완료 MAU(월간활성사용자수) 52만 유지중 ( Android 유저는 제외 )']
-                },
-                {
                   title: '신한 슈퍼 SOL iOS 앱 고도화(선도개발)',
                   totalDate: calculateDuration('2024-02-29', '2024-06-30'),
                   siStartDate: createDate('2024-02-29'),
@@ -240,6 +219,27 @@ export const updateResume = async (user, callback) => {
                     'SOL앱이 지원하지 못하는 유저를 위한 저사양 폰 유저 대응용 앱 개발 (SOL 앱과 병행으로 개발 및 유지보수 되면서 고사양, 저사양 유저 모두 은행 서비스 이용에 문제가 없도록 관리)',
                     '- MAU(월간활성사용자수) 5천 유지중 ( Android 유저는 제외 )'
                   ]
+                },
+                {
+                  title: '신한 SOL 전면 개편',
+                  totalDate: calculateDuration('2022-05-23', '2023-12-06'),
+                  siStartDate: createDate('2022-05-23'),
+                  siEndDate: createDate('2023-12-06'),
+                  siPeriod: calculateDuration('2022-05-23', '2023-12-06'),
+                  subject: '하이브리드 앱으로 구현되어있는 SOL 앱 Native 앱으로 전면 개편',
+                  work: [
+                    '신한 SOL뱅크 전면 개편 개발 (전체메뉴, 상품, 혜택, 머니버스(마이데이터 서비스), 쏠패스(QR인증), STAX 담당)',
+                    'RIBs 아키텍처, Clean 아키텍처를 활용한 Native 앱 개발',
+                    'Concurrency, Combine를 활용한 비동기 프로그래밍 개발',
+                    'DiffableDataSource를 활용한 Collection, Table개발',
+                    'Flex, Pin 을 이용한 CodeBase UI 개발',
+                    '프로토콜지향 프로그래밍(POP) 전면 활용',
+                    'Tuist 를 활용한 Xcode 프로젝트 유지관리',
+                    '비즈니스로직 계층별 모듈화된 개발'
+                  ],
+                  workPercent: '50%',
+                  technology: 'Swift5, Bitbucket, Jira',
+                  result: ['프로젝트 완료 MAU(월간활성사용자수) 52만 유지중 ( Android 유저는 제외 )']
                 },
               ]
             },
