@@ -4,45 +4,58 @@ import jsPDF from "jspdf";
 export default async function exportSeparatedPdf(page1, fileName) {
     const pdf = new jsPDF("p", "mm", "a4");
 
-    async function capture(el) {
-        return await html2canvas(el, {
-            scale: 2,
-            useCORS: true,
-        });
-    }
+    const canvas = await html2canvas(page1, {
+        scale: 2,
+        useCORS: true,
+    });
 
     const pxToMm = 0.264583;
-    const margin = 15;
-    const pageW = 210 - margin * 2;
-    const pageH = 297 - margin * 2;
+    const margin = 15;                    // ✔ 상·하단 마진 유지
+    const pageWidth = 210 - margin * 2;
+    const pageHeight = 297 - margin * 2;
 
-    const pages = [page1];
+    const imgWidthMm = canvas.width * pxToMm;
+    const imgHeightMm = canvas.height * pxToMm;
 
-    for (let i = 0; i < pages.length; i++) {
-        const canvas = await capture(pages[i]);
-        const imgData = canvas.toDataURL("image/png");
+    const scale = pageWidth / imgWidthMm;
 
-        const imgW = canvas.width * pxToMm;
-        const imgH = canvas.height * pxToMm;
+    const scaledHeightPx = (pageHeight / pxToMm) / scale;
 
-        const scale = pageW / imgW;
-        const scaledH = imgH * scale;
+    const totalPages = Math.ceil(canvas.height / scaledHeightPx);
 
-        let remain = scaledH;
-        let y = margin;
+    for (let page = 0; page < totalPages; page++) {
+        // 새로운 잘린 캔버스 만들기
+        const cropCanvas = document.createElement("canvas");
+        cropCanvas.width = canvas.width;
+        cropCanvas.height = scaledHeightPx;
 
-        while (remain > 0) {
-            pdf.addImage(imgData, "PNG", margin, y, pageW, scaledH);
+        const ctx = cropCanvas.getContext("2d");
 
-            remain -= pageH;
+        // 특정 영역 잘라서 그리기
+        ctx.drawImage(
+            canvas,
+            0,
+            page * scaledHeightPx,
+            canvas.width,
+            scaledHeightPx,
+            0,
+            0,
+            canvas.width,
+            scaledHeightPx
+        );
 
-            if (remain > 0) {
-                pdf.addPage();
-                y -= pageH;
-            }
-        }
+        const imgData = cropCanvas.toDataURL("image/png");
 
-        if (i < pages.length - 1) pdf.addPage();
+        if (page !== 0) pdf.addPage();
+
+        pdf.addImage(
+            imgData,
+            "PNG",
+            margin,
+            margin,
+            pageWidth,
+            pageHeight
+        );
     }
 
     pdf.save(fileName);
