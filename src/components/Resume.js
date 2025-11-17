@@ -223,8 +223,12 @@ const Resume = () => {
       <div ref={contentRef}>
         <CardContainer>
           <Card>
-            <MainTitle>{userData.title}</MainTitle>
-
+            <div style={{ marginBottom: 8 }}>
+              <MainTitle>{userData.title}</MainTitle>
+              <MainTitle style={{ fontSize: '18px' }}>
+                {userData.jobTitle}
+              </MainTitle>
+            </div>
             <InfoContainer>
               <Info>
                 <Item>

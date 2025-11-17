@@ -70,7 +70,7 @@ export const updateResume = async (user, callback) => {
           address: '경기도 부천시 원미구 부흥로 49',
           chineseCharacter: '宋淵根',
           birthday: '1989.01.10',
-          jobTitle: 'Updated Job Title',
+          jobTitle: '현대오토에버 완성차 앱 개발/운영 지원 ',
           disabilityStatus: '없음',
           veteransStatus: '없음',
           totalPeriod: calculateTotalDuration(

@@ -1,54 +1,88 @@
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
-const exportToPdf = async (element, fileName = 'document.pdf') => {
-  // 임시 스타일 시트 생성
-  const style = document.createElement('style');
-  style.textContent = `
-    @media print {
-      body {
-        font-size: 12px;
-        line-height: 1.5;
-      }
+const exportToPdfFullPageWithMargin = async (element, fileName = 'document.pdf') => {
+  console.log("📄 [PDF] Export 시작");
 
-      h1, h2, h3, h4, h5, h6 {
-        font-size: 1.2em;
-      }
+  const margin = 20; // mm
+  const scale = 2;   // 고화질
 
-      .container {
-        width: 210mm; /* A4 width */
-        padding: 20mm;
-        margin: 0;
-      }
+  console.log("⚙️ 설정값 | margin(mm):", margin, "scale:", scale);
 
-      /* Adjust other styles as needed */
-    }
-  `;
-  document.head.appendChild(style);
+  // HTML → Canvas 변환
+  console.log("🖼 html2canvas 캡처 시작");
+  const canvas = await html2canvas(element, {
+    scale: scale,
+    useCORS: true
+  });
+  console.log("🖼 html2canvas 캡처 완료");
 
-  const canvas = await html2canvas(element, { scale: 2 }); // 스케일을 높여 더 나은 해상도
   const imgData = canvas.toDataURL('image/png');
-  const pdf = new jsPDF('p', 'mm', 'a4');
-  const imgWidth = 210;
-  const pageHeight = 295;
-  const imgHeight = (canvas.height * imgWidth) / canvas.width;
-  let heightLeft = imgHeight;
-  let position = 0;
 
-  pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-  heightLeft -= pageHeight;
+  // Canvas 크기 (px)
+  const canvasWidthPx = canvas.width;
+  const canvasHeightPx = canvas.height;
 
-  while (heightLeft >= 0) {
-    position = heightLeft - imgHeight;
-    pdf.addPage();
-    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-    heightLeft -= pageHeight;
+  console.log("📏 Canvas Size(px):", {
+    widthPx: canvasWidthPx,
+    heightPx: canvasHeightPx
+  });
+
+  // px → mm 변환 (1px = 0.264583mm)
+  const pxToMm = 0.264583;
+
+  const contentWidthMm = canvasWidthPx * pxToMm;
+  const contentHeightMm = canvasHeightPx * pxToMm;
+
+  console.log("📐 변환된 콘텐츠 크기(mm):", {
+    widthMm: contentWidthMm,
+    heightMm: contentHeightMm
+  });
+
+  // PDF 페이지 크기 = 콘텐츠 + margin
+  const pdfWidth = contentWidthMm + margin * 2;
+  const pdfHeight = contentHeightMm + margin * 2;
+
+  console.log("📄 PDF 페이지 전체 크기(mm):", {
+    pdfWidth,
+    pdfHeight
+  });
+
+  // jsPDF 페이지 제한 체크
+  const maxJsPdfHeight = 14400; // jsPDF 내부 한계(mm)
+  console.log("⚠️ jsPDF 최대 페이지 높이(mm) 기준:", maxJsPdfHeight);
+
+  if (pdfHeight > maxJsPdfHeight) {
+    console.warn("❗⚠️ PDF Height가 jsPDF 최대 허용치를 초과함 → 잘릴 가능성 있음!");
+    console.warn("❗ 현재 height:", pdfHeight, ">", maxJsPdfHeight);
+  } else {
+    console.log("✔ PDF 높이가 jsPDF 제한 이내:", pdfHeight, "<=", maxJsPdfHeight);
   }
 
-  pdf.save(fileName);
+  // PDF 생성
+  console.log("📄 jsPDF 인스턴스 생성 (커스텀 크기)");
+  const pdf = new jsPDF('p', 'mm', [pdfWidth, pdfHeight]);
 
-  // 임시 스타일 시트 제거
-  document.head.removeChild(style);
+  // addImage 정보 출력
+  console.log("🖼 addImage 설정:", {
+    x: margin,
+    y: margin,
+    widthMm: contentWidthMm,
+    heightMm: contentHeightMm
+  });
+
+  pdf.addImage(
+    imgData,
+    'PNG',
+    margin,
+    margin,
+    contentWidthMm,
+    contentHeightMm
+  );
+
+  console.log("💾 PDF 저장 시작…");
+  pdf.save(fileName);
+  console.log("✔ PDF 저장 완료 →", fileName);
 };
 
-export default exportToPdf;
+export default exportToPdfFullPageWithMargin;
