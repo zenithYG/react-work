@@ -1,88 +1,68 @@
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
-const exportToPdfFullPageWithMargin = async (element, fileName = 'document.pdf') => {
-  console.log("📄 [PDF] Export 시작");
+/**
+ * A4 페이지에 margin 적용 + 자동 페이지 분할 PDF Export
+ */
+const exportToPdfA4 = async (
+  element,
+  fileName = 'document.pdf',
+  marginMm = 15 // ← 원하는 A4 마진(mm)
+) => {
 
-  const margin = 20; // mm
-  const scale = 2;   // 고화질
+  console.log("📄 [PDF] A4 자동 페이지 분할 + 마진 적용 Export 시작");
 
-  console.log("⚙️ 설정값 | margin(mm):", margin, "scale:", scale);
-
-  // HTML → Canvas 변환
-  console.log("🖼 html2canvas 캡처 시작");
   const canvas = await html2canvas(element, {
-    scale: scale,
-    useCORS: true
+    scale: 2,
+    useCORS: true,
   });
-  console.log("🖼 html2canvas 캡처 완료");
 
   const imgData = canvas.toDataURL('image/png');
 
-  // Canvas 크기 (px)
-  const canvasWidthPx = canvas.width;
-  const canvasHeightPx = canvas.height;
-
-  console.log("📏 Canvas Size(px):", {
-    widthPx: canvasWidthPx,
-    heightPx: canvasHeightPx
-  });
-
-  // px → mm 변환 (1px = 0.264583mm)
+  // px → mm 변환
   const pxToMm = 0.264583;
 
-  const contentWidthMm = canvasWidthPx * pxToMm;
-  const contentHeightMm = canvasHeightPx * pxToMm;
+  // A4 사이즈
+  const pageWidth = 210;
+  const pageHeight = 297;
 
-  console.log("📐 변환된 콘텐츠 크기(mm):", {
-    widthMm: contentWidthMm,
-    heightMm: contentHeightMm
-  });
+  // 출력 가능한 영역 (마진 제외)
+  const printableWidth = pageWidth - marginMm * 2;
+  const printableHeight = pageHeight - marginMm * 2;
 
-  // PDF 페이지 크기 = 콘텐츠 + margin
-  const pdfWidth = contentWidthMm + margin * 2;
-  const pdfHeight = contentHeightMm + margin * 2;
+  // 캔버스 실제 크기 mm
+  const imgWidthMm = canvas.width * pxToMm;
+  const imgHeightMm = canvas.height * pxToMm;
 
-  console.log("📄 PDF 페이지 전체 크기(mm):", {
-    pdfWidth,
-    pdfHeight
-  });
+  // A4 안에 width 기준으로 맞춤
+  const scale = printableWidth / imgWidthMm;
+  const scaledHeightMm = imgHeightMm * scale;
 
-  // jsPDF 페이지 제한 체크
-  const maxJsPdfHeight = 14400; // jsPDF 내부 한계(mm)
-  console.log("⚠️ jsPDF 최대 페이지 높이(mm) 기준:", maxJsPdfHeight);
+  const pdf = new jsPDF('p', 'mm', 'a4');
 
-  if (pdfHeight > maxJsPdfHeight) {
-    console.warn("❗⚠️ PDF Height가 jsPDF 최대 허용치를 초과함 → 잘릴 가능성 있음!");
-    console.warn("❗ 현재 height:", pdfHeight, ">", maxJsPdfHeight);
-  } else {
-    console.log("✔ PDF 높이가 jsPDF 제한 이내:", pdfHeight, "<=", maxJsPdfHeight);
+  let remainingHeight = scaledHeightMm;
+  let positionY = marginMm;
+
+  while (remainingHeight > 0) {
+    pdf.addImage(
+      imgData,
+      'PNG',
+      marginMm,        // ← 왼쪽 마진
+      positionY,       // ← 상단 마진
+      printableWidth,  // 마진 제외 영역 너비
+      scaledHeightMm   // 실제 이미지 scaling
+    );
+
+    remainingHeight -= printableHeight;
+
+    if (remainingHeight > 0) {
+      pdf.addPage();
+      positionY -= printableHeight; // 다음 페이지로 넘어가며 영역 이동
+    }
   }
 
-  // PDF 생성
-  console.log("📄 jsPDF 인스턴스 생성 (커스텀 크기)");
-  const pdf = new jsPDF('p', 'mm', [pdfWidth, pdfHeight]);
-
-  // addImage 정보 출력
-  console.log("🖼 addImage 설정:", {
-    x: margin,
-    y: margin,
-    widthMm: contentWidthMm,
-    heightMm: contentHeightMm
-  });
-
-  pdf.addImage(
-    imgData,
-    'PNG',
-    margin,
-    margin,
-    contentWidthMm,
-    contentHeightMm
-  );
-
-  console.log("💾 PDF 저장 시작…");
   pdf.save(fileName);
-  console.log("✔ PDF 저장 완료 →", fileName);
+  console.log("📄 PDF Export 완료 with margin!");
 };
 
-export default exportToPdfFullPageWithMargin;
+export default exportToPdfA4;

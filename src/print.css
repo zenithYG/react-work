@@ -1,18 +1,17 @@
-
 @media print {
-    body {
-      font-size: 12px;
-      line-height: 1.5;
-    }
-  
-    h1, h2, h3, h4, h5, h6 {
-      font-size: 1.2em;
-    }
-  
-    .container {
-      width: 210mm; /* A4 width */
-      padding: 20mm;
-      margin: 0;
-    }
-  
+  @page {
+    size: A4;
+    margin: 18mm;
   }
+
+  .page {
+    page-break-after: always;
+    padding: 15mm;
+    box-sizing: border-box;
+    background: white;
+  }
+
+  body {
+    margin: 0;
+  }
+}

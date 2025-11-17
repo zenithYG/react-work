@@ -263,7 +263,6 @@ const Resume = () => {
           {console.log("📌 EducationInfos 렌더링")}
           <EducationInfos listItems={userData.educationInfo} />
         </Section>
-
         <Section>
           {console.log("📌 LicenseInfos 렌더링")}
           <LicenseInfos listItems={userData.licenseInfo} />
