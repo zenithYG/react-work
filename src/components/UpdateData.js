@@ -64,7 +64,7 @@ export const updateResume = async (user, callback) => {
       await updateDoc(userDocRef, {
         resume: {
           admin: true,
-          title: '모바일 개발자',
+          title: 'Application\nDeveloper(Android, iOS)',
           name: '송연근',
           mobile: '+82-10-8725-8120',
           address: '경기도 부천시 원미구 부흥로 49',

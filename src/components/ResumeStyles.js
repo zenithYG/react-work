@@ -4,7 +4,7 @@ export const Card = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #5b7fa4;
+  background-color: #1372CE;
   color: white;
   font-family: Arial, sans-serif;
   width: 100%;
@@ -96,15 +96,15 @@ export const UpdateButton = styled.button`
 export const MainTitle = styled.h1`
   color: #ffffff; 
   font-weight: 800;
-  padding-top: 30px;
+  padding-top: 0px;
   padding-left: 20px;
   padding-right: 20px;
-  padding-bottom: 30px;
+  padding-bottom: 0;
   text-align: left;
 
   @media (max-width: 768px) {
     text-align: center;
-    padding: 20px 10px;
+    padding: 20px 0;
   }
 `;
 
