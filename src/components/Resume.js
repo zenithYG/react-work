@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { db, auth } from '../firebase';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import exportToPdf from '../utils/PDFExportor';
 import exportToDocx from '../utils/docxExportor';
@@ -14,199 +14,254 @@ import { updateResume, updateToken } from './UpdateData';
 import { useLocation } from "react-router-dom";
 import avatar from '../images/yg.jpg';
 
-import {
-  calculateKoreanAge
-} from '../utils/dateUtils';
+import { calculateKoreanAge } from '../utils/dateUtils';
 
 import {
-  UpdateButton,
-  Card,
-  Info,
-  InfoContainer,
-  Item,
-  Avatar,
-  MainTitle,
-  SubTitle,
-  Container,
-  Divider,
-  Section,
-  CardContainer,
-  AdminContainer
+  UpdateButton, Card, Info, InfoContainer, Item, Avatar,
+  MainTitle, SubTitle, Container, Divider, Section,
+  CardContainer, AdminContainer
 } from './ResumeStyles';
 
 
 
 const Resume = () => {
 
+  console.log("▶️ Resume Component Rendered");
+
   const contentRef = useRef();
   const location = useLocation();
-  const [token, setGeneratedToken] = useState(''); // 생성된 토큰을 상태로 관리
+
+  const [token, setGeneratedToken] = useState('');
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [admin, setAdmin] = useState(false);
 
-  // 토큰 생성 함수
-  const generateToken = () => {
+  // 🔥 렌더링 시 userData 상태 로깅
+  console.log("🔍 loading:", loading, "user:", user, "admin:", admin, "userData:", userData);
 
-    const currentDate = new Date(); // 현재 날짜
-    const expiredDate = new Date(currentDate); // 새로운 Date 객체 생성
-    expiredDate.setDate(currentDate.getDate() + 15); // 15일 추가
-    // 날짜를 ISO 형식으로 변환 (YYYY-MM-DD)
-    const formattedExpiredDate = expiredDate.toISOString().split('T')[0];
+  /** ===========================
+   *  Firebase 데이터 로딩 함수
+   *  =========================== */
 
-    const data = {
-      k: user.uid, // 예시 사용자 키
-      p: [formattedExpiredDate], // 권한 정보에 날짜 추가
-    };
-    const newToken = btoa(JSON.stringify(data)).replace(/=+$/, ""); // Base64로 인코딩된 토큰
-    setGeneratedToken(newToken); // 생성된 토큰을 상태에 저장
-    console.log("Generated Token:", newToken);
+  const fetchUserData = async (uid, userObj) => {
+    console.log("📡 fetchUserData 실행 → uid:", uid);
+
+    try {
+      const docRef = doc(db, 'Users', uid);
+      const docSnap = await getDoc(docRef);
+
+      if (!docSnap.exists()) {
+        setLoading(false);
+        return;
+      }
+
+      setUserData(docSnap.data().resume);
+
+      // 🔥 user가 비어 있으면 강제로 주입
+      if (!user) {
+        setUser(userObj);
+      }
+
+    } catch (e) {
+      console.error("🔥 fetchUserData ERROR:", e);
+    }
+
+    setLoading(false);
   };
 
-
-  const handleExportPdf = () => {
-    const content = contentRef.current;
-    exportToPdf(content, 'example.pdf');
-  };
-
-  const handleExportDocx = () => {
-    const content = contentRef.current.innerText;
-    exportToDocx(content, 'example.docx');
-  };
 
   const handleUpdateData = () => {
-    updateResume(user, handleUpdateDataCallback)
-  }
+    console.log("🟦 [handleUpdateData] 버튼 클릭됨!");
+    console.log("🟦 전달되는 user:", user);
 
-  const handleUpdateDataCallback = () => {
-    fetchUserData(user.uid)
-  }
-
-  const updateAdminState = (isAdmin) => {
-    setAdmin(isAdmin);
+    updateResume(user, () => {
+      console.log("🟩 [handleUpdateData] updateResume 콜백 실행됨!");
+    });
   };
 
-  // 클립보드 복사 함수
-  const saveToken = () => {
-    const decodedData = JSON.parse(atob(token));
-    const expiredDate = new Date(decodedData.p[0]);
-    updateToken(token, expiredDate);
-  };
 
-  function restoreToken(key) {
+  const fetchUserDataUsingToken = async (uid) => {
+    console.log(`📌 Token 기반 사용자 데이터 로딩 → uid: ${uid}`);
     try {
-      const uidFromToken = JSON.parse(atob(key));
-      fetchUserDataUsingToken(uidFromToken.k);
+      const docRef = doc(db, 'Users', uid);
+      const docSnap = await getDoc(docRef);
+
+      if (!docSnap.exists()) {
+        console.warn("❌ Token 기반: 문서 없음");
+        setLoading(false);
+        return;
+      }
+
+      console.log("📄 Token 기반 DB 데이터:", docSnap.data());
+
+      // 🔥 UserData 세팅
+      setUserData(docSnap.data().resume);
+
+      // 🔥 여기서 user도 갱신
+      // Firebase Auth User 객체가 없으므로 최소 structure 직접 생성
+      setUser({
+        uid: uid,
+        email: docSnap.data().email ?? null,
+        displayName: docSnap.data().name ?? null,
+        isTokenLogin: true,   // 디버깅용 flag (선택)
+      });
+
+      // admin 여부도 Token 로그인에서는 false 처리
+      setAdmin(false);
+
+    } catch (e) {
+      console.error("🔥 fetchUserDataUsingToken ERROR:", e);
+    }
+
+    setLoading(false);
+  };
+
+
+
+  /** ===========================
+   *  토큰 복원
+   *  =========================== */
+  function restoreToken(key) {
+    console.log("🔐 restoreToken 실행:", key);
+
+    try {
+      const decoded = JSON.parse(atob(key));
+      console.log("🔓 Token Decoded:", decoded);
+
+      fetchUserDataUsingToken(decoded.k);
     } catch (error) {
-      console.error("키 복원 실패:", error);
+      console.error("🔥 restoreToken 실패:", error);
       return null;
     }
   }
 
-  const fetchUserDataUsingToken = async (token) => {
-    const docRef = doc(db, 'Users', token);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      const data = docSnap.data().resume;
-      console.log(data);
-      setUserData(data);
-    } else {
-      console.log('No such document!');
-    }
-    setLoading(false);
-  };
 
-  const fetchUserData = async (uid) => {
-    const docRef = doc(db, 'Users', uid);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      setUserData(docSnap.data().resume);
-    } else {
-      console.log('No such document!');
-    }
-    setLoading(false);
-  };
-
+  /** ===========================
+   *  Firebase Auth 감시
+   *  =========================== */
   useEffect(() => {
+    console.log("👀 useEffect → Firebase Auth 감시 시작");
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+
+      console.log("📡 onAuthStateChanged → user:", user);
+
       if (user) {
+        console.log("✔️ 로그인 상태");
         setUser(user);
-        updateAdminState(true);
+        setAdmin(true);
         fetchUserData(user.uid);
       } else {
+        console.log("❗ 로그아웃 상태");
+
+        // Token 로그인 상황
         if (location.state?.token) {
-          restoreToken(location.state?.token);
-          updateAdminState(false); 
+          console.log("🔑 location.state.token 존재:", location.state.token);
+          restoreToken(location.state.token);
+          setAdmin(false);
         }
+
         setLoading(false);
       }
     });
 
-    return () => unsubscribe();
+    return () => {
+      console.log("🧹 Auth Listener cleanup");
+      unsubscribe();
+    };
   }, []);
 
+
+  /** ===========================
+   *  렌더링 분기
+   *  =========================== */
+
   if (loading) {
+    console.log("⏳ 로딩 중 (loading=true)");
     return <div>Loading...</div>;
   }
 
   if (!userData) {
-    return <div></div>;
+    console.log("⚠️ userData 없음 → 빈 화면");
+    return <div>데이터 없음</div>; // 일단 빈 화면 방지
   }
+
+  /** ===========================
+   *  정상 렌더 화면
+   *  =========================== */
+  console.log("🎉 정상 렌더링 시작 (userData OK)");
 
   return (
     <Container style={{ marginTop: '60px', height: 'calc(100vh - 60px)' }}>
-      {/* 관리자 기능 표시 */}
-      {admin && (
-        <AdminContainer>
-          <UpdateButton onClick={handleUpdateData}>Update User Data</UpdateButton>
+
+      <AdminContainer>
+        <UpdateButton onClick={handleUpdateData}>Update User Data</UpdateButton>
+        {/* <UpdateButton onClick={handleUpdateData}>Update User Data</UpdateButton>
           <UpdateButton onClick={handleExportPdf}>Export pdf</UpdateButton>
           <UpdateButton onClick={handleExportDocx}>Export docx</UpdateButton>
-          <UpdateButton onClick={generateToken}>MakeToken</UpdateButton>
+          <UpdateButton onClick={generateToken}>MakeToken</UpdateButton> */}
+        {/* 
           {token && (
             <div>
               <p>Generated Token: {token}</p>
               <UpdateButton onClick={saveToken}>SaveToken</UpdateButton>
             </div>
-          )}
-        </AdminContainer>
-      )}
-      {/* 사용자 정보 표시 */}
+          )} */}
+      </AdminContainer>
+
       <div ref={contentRef}>
         <CardContainer>
           <Card>
             <MainTitle>{userData.title}</MainTitle>
+
             <InfoContainer>
               <Info>
                 <Item>
                   {userData.name} ({userData.chineseCharacter})
                 </Item>
+
                 <Item>
                   {userData.birthday} (만 {calculateKoreanAge(userData.birthday)}세)
                 </Item>
+
                 <Item>{userData.email}</Item>
                 <Item>{userData.mobile}</Item>
               </Info>
+
               <Avatar image={avatar} />
             </InfoContainer>
           </Card>
         </CardContainer>
+
+        {/* 섹션들 로깅 추가 */}
         <Section>
+          {console.log("📌 ExecutiveSummary 렌더링")}
           <ExecutiveSummary listItems={userData.executiveSummary} />
         </Section>
+
         <Section>
+          {console.log("📌 SchoolInfos 렌더링")}
           <SchoolInfos listItems={userData.schoolInfo} />
         </Section>
+
         <Section>
+          {console.log("📌 EducationInfos 렌더링")}
           <EducationInfos listItems={userData.educationInfo} />
         </Section>
+
         <Section>
+          {console.log("📌 LicenseInfos 렌더링")}
           <LicenseInfos listItems={userData.licenseInfo} />
         </Section>
+
         <Section>
+          {console.log("📌 MilitaryInfo 렌더링")}
           <MilitaryInfo item={userData.militaryInfo} />
         </Section>
+
         <Section>
+          {console.log("📌 WorkingExperience 렌더링")}
           <WorkingExperience listItems={userData.workingExperience} />
         </Section>
       </div>

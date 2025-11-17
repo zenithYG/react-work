@@ -30,10 +30,11 @@ export const CardContainer = styled.div`
 `;
 
 export const AdminContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  max-width: 30%;
+  position: relative;
+  z-index: 999; /* 클릭 최우선 */
+  background: white; /* 필요시 추가 */
 `;
+
 
 export const InfoContainer = styled.div`
   display: flex;

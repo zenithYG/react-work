@@ -50,27 +50,27 @@ const TokenLogin = () => {
       // Firebase Custom Token 디코딩
       const decodedData = JSON.parse(atob(token));
       console.log("Decode Token:", decodedData);
-  
+
       const userRef = doc(db, "Users", decodedData.k); // decodedData.k는 디코딩된 사용자 키
       const userSnapshot = await getDoc(userRef);
-  
+
       if (userSnapshot.exists()) {
         console.log("해당 키가 존재합니다:", userSnapshot.data());
-  
+
         // 토큰 생성 날짜 추출
         const tokenDate = new Date(decodedData.p[0]); // decodedData.p[0]은 생성 날짜
         const currentDate = new Date();
-  
+
         // 날짜 차이 계산
         const timeDifference = currentDate - tokenDate; // 현재 날짜와 생성 날짜의 차이
         const daysDifference = timeDifference / (1000 * 3600 * 24); // 밀리초 -> 일 변환
-  
+
         // 토큰 만료 여부 확인
         if (daysDifference > 3) {
           alert("로그인 실패: 토큰 생성 후 3일이 지나 만료되었습니다.");
           return; // 로그인 진행 중단
         }
-  
+
         // 유효한 토큰인 경우 로그인 진행
         navigate("/resume", { state: { token } });
       } else {
