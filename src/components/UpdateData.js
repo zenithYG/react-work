@@ -70,7 +70,7 @@ export const updateResume = async (user, callback) => {
           address: '경기도 부천시 원미구 부흥로 49',
           chineseCharacter: '宋淵根',
           birthday: '1989.01.10',
-          jobTitle: '현대오토에버 완성차 앱 개발/운영 지원 ',
+          jobTitle: '현대오토에버 완성차 앱 개발/운영 지원',
           disabilityStatus: '없음',
           veteransStatus: '없음',
           totalPeriod: calculateTotalDuration(
@@ -140,16 +140,13 @@ export const updateResume = async (user, callback) => {
                   siPeriod: '진행중',
                   subject: '기존 ‘신한은행’ 앱 기반으로 그룹사 통합 앱 ‘슈퍼SOL’ 개발',
                   work: [
-                    '앱 기동 로직 및 공통 영역 개발 담당',
-                    '전체메뉴 및 공통 모듈 구조 관리 및 개선 수행',
+                    '앱 기동, 라우팅, 공통 영역 개발 담당',
                     '기존 내부 저장소(Keychain / UserDefaults / CoreData 등) 사용 로직을 점검하고 불필요한 동기화, 중복 접근 제거',
                     '안정적인 마이그레이션 로직 개발',
                     '앱 최초 실행 및 로그인 이후 화면 진입 시 소요 시간 측정 및 개선',
-                    '주요 API 응답 데이터 분석 및 Lazy Load 구조 도입',
-                    '비동기 처리 및 캐싱 적용으로 초기 렌더링 속도 향상',
-                    '앱 기동 속도 개선을 위한 API 응답 데이터 분석 및 캐싱 구조 개선',
+                    '주요 API 응답 데이터 분석(Log) 및 Lazy Load 구조 도입',
                     '카드, 증권, 보험 그룹사의 라우팅 화면 구조 정리 및 관리 체계 개발',
-                    'Jira를 이용한 이슈, 브랜치,  WBS 관리',
+                    'Jira를 이용한 이슈, 브랜치, WBS 관리',
                     'Confluence를 이용한 기술문서화, 지식자산화'
                   ],
                   workPercent: '33.3%',
@@ -165,20 +162,19 @@ export const updateResume = async (user, callback) => {
                   subject: '신한은행 대표 모바일 서비스 ‘신한은행’(구 SOL뱅크), SOL mini 운영',
                   work: [
                     'Firebase Crashlytics를 이용한 크래시 리포트 분석 및 원인 대응',
+                    'Firebase Performance 를 활용한 서비스 이상 감지',
                     '고객 민원 및 오류 신고 시 Splunk MINT 로그 분석을 통한 원인 파악 및 조치',
-                    'App Store 심사 제출 및 리젝 대응',
-                    '백엔드 API 변경사항 및 신규 API 적용 대응',
+                    '신규 버전 App Store 심사 제출 및 리젝 대응',
                     '운영 배포(Hotfix 포함) 및 버전 관리',
-                    'Firebase Analytics, Performance 를 활용한 서비스 이상 감지',
+                    '백엔드 API 변경사항 및 신규 API 적용 대응',
                     'iOS 신규 릴리스 시 앱 기능/화면 테스트 및 대응 계획 수립',
                     'QA 및 스테이징 환경 테스트 지원',
-                    '앱스토어 리뷰 모니터링 및 사용자 피드백 분석',
-                    'Jira를 이용한 이슈, 브랜치,  WBS 관리',
-                    'Confluence를 이용한 기술문서화, 지식자산화',
+                    '신규 OS, 기술 대응을 위한 조직운영',
+                    '앱스토어 리뷰 모니터링 및 사용자 피드백 분석'
                   ],
                   workPercent: '8.3%(iOS 개발 팀원 12명)',
                   technology: 'Swift5, Bitbucket, Jira, Confluence',
-                  result: ['장애 대응 및 고객 민원 반영하여 정상적인 앱 서비스 제공 중']
+                  result: ['장애 대응 및 고객 민원 반영하여 정상적인 앱 서비스 제공']
                 },
                 {
                   title: '신한 슈퍼 SOL iOS 앱 고도화(선도개발)',
@@ -194,7 +190,7 @@ export const updateResume = async (user, callback) => {
                   ],
                   workPercent: '50%',
                   technology: 'Swift5, Bitbucket, Jira',
-                  result: ['프로젝트 완료 (선도 개발 완료된 버전 그룹장 시연)']
+                  result: ['프로젝트 완료 (선도 개발 완료된 버전 그룹장 시연)', '신한 SOL뱅크를 슈퍼SOL로 대체 개발 진행 가능성 확인']
                 },
                 {
                   title: '신한 쏠미니 앱 개발',
@@ -228,9 +224,9 @@ export const updateResume = async (user, callback) => {
                   siPeriod: calculateDuration('2022-05-23', '2023-12-06'),
                   subject: '하이브리드 앱으로 구현되어있는 SOL 앱 Native 앱으로 전면 개편',
                   work: [
-                    '신한 SOL뱅크 전면 개편 개발 (전체메뉴, 상품, 혜택, 머니버스(마이데이터 서비스), 쏠패스(QR인증), STAX 담당)',
+                    '신한 SOL뱅크 전면 개편 개발 (전체메뉴, 상품, 혜택, 머니버스(마이데이터 서비스), 쏠패스(QR인증), 세금 납부 기능(STAX) 담당)',
                     'RIBs 아키텍처, Clean 아키텍처를 활용한 Native 앱 개발',
-                    'Concurrency, Combine를 활용한 비동기 프로그래밍 개발',
+                    'Concurrency, Combine를 조합 활용한 비동기 프로그래밍 개발',
                     'DiffableDataSource를 활용한 Collection, Table개발',
                     'Flex, Pin 을 이용한 CodeBase UI 개발',
                     '프로토콜지향 프로그래밍(POP) 전면 활용',
@@ -272,6 +268,7 @@ export const updateResume = async (user, callback) => {
                     '기존 ‘알바콜’ 앱을 ‘뉴워커’ 앱으로 전환 프로젝트 담당',
                     '\'알바생/사장님\'파트 중 \'알바생\'파트 전반 담당',
                     'MVC 디자인 패턴 사용',
+                    'Firebase RealTime DB를 활용한 메신저 기능 개발',
                     'SwiftLint 활용, 코드 컨벤션 관리'
                   ],
                   workPercent: '50%',
@@ -309,12 +306,12 @@ export const updateResume = async (user, callback) => {
                   work: [
                     '3.4.2 ~ 3.7.0 버전 버그 대응 및 업데이트',
                     'MVC 디자인 패턴 사용',
-                    '기존에 이메일 중복 가입 여부에 따른 별도의 화면들을 공통 사용 로그인 부분 모듈화하여 통합 Private Pod 라이브러리로 관리',
+                    '공통 사용된 로그인 부분 모듈화하여 통합 Private Pod 라이브러리로 관리',
                     'Firebase Crashlytics 체크 버그 수정 및 문제점 개선',
                     '하이브리드 앱 기능 추가 및 관리',
                     '휴대폰 본인인증 기능 추가',
                     'WHOIS OpenAPI사용 , 해외 유저 IP를 통해 구분하여  UI 수정',
-                    '애플 로그인 기능 추가',
+                    'SNS 로그인 기능 추가, 개선(네이버, 카카오, 구글, 페이스북, 애플)',
                     '통계용 라이브러리 AirBridge 추가',
                     '변경된 ATT정책 대응',
                   ],
@@ -332,7 +329,7 @@ export const updateResume = async (user, callback) => {
                   work: [
                     '2.2.8 ~ 2.4.0 버전 버그 대응 및 업데이트',
                     'MVC 디자인 패턴 사용',
-                    '기존에 이메일 중복 가입 여부에 따른 별도의 화면들을 공통 사용 로그인 부분 모듈화하여 통합 Private Pod 라이브러리로 관리',
+                    '공통 사용된 로그인 부분 모듈화하여 통합 Private Pod 라이브러리로 관리',
                     'Firebase Crashlytics 체크 버그 수정 및 문제점 개선'
                   ],
                   workPercent: '70%',
@@ -367,7 +364,6 @@ export const updateResume = async (user, callback) => {
                     'MVVM 디자인 패턴을 활용',
                     'Foreground Service를 이용한 락스크린화면 구현',
                     'Realm DB를 이용한 앱 내 데이터 관리',
-                    'Retrofit2를 이용한 서버 통신',
                     '웹뷰 리다이렉팅 광고 기술 접목',
                     'SNS로그인(네이버, 카카오, 구글, 페이스북)',
                     'FCM 이용한 Push 알림 기능 개발',
@@ -404,8 +400,8 @@ export const updateResume = async (user, callback) => {
                   work: [
                     'Android 8.0버전에 호환되지 않는 보완 및 버그 수정',
                     '날씨, 미세먼지 정보 조회관련 공공데이터포털(DATA.GO.KR) API사용',
-                    '보안 솔루션(자이로이드) 적용',
-                    'Android 버전 소스 난독화'
+                    'Android 버전 소스 난독화',
+                    '보안 솔루션(자이로이드) 적용'
                   ],
                   workPercent: '100%',
                   technology: 'Android(JAVA), iOS(Objective-C)',
@@ -421,7 +417,7 @@ export const updateResume = async (user, callback) => {
                   work: [
                     'XML에 기반인 통신 프로토콜 XMPP를 이용하여 iOS메신저 기능 개발',
                     'Realm DB를 이용한 데이터 관리',
-                    '사내 조직도 부분 Tree구조 UI 구현',
+                    '사내 조직도 부분 Tree구조 로직화, UI 구현',
                     '보안 솔루션 (자이로이드) 적용'
                   ],
                   workPercent: '100%',
@@ -438,7 +434,7 @@ export const updateResume = async (user, callback) => {
                   work: [
                     '웹 기반 앱을 Websquare 기반 앱으로 통합 개발',
                     'Native에서 호출하던 기능들을 모듈화',
-                    '서식 관련 외부 솔루션 (OZ e-Form) 문제확인, 최신버전 업데이트',
+                    '서식 관련 외부 솔루션 (OZ e-Form) 적용',
                     '버그 수정 및 코드 리펙토링'
                   ],
                   workPercent: '100%',
@@ -472,7 +468,7 @@ export const updateResume = async (user, callback) => {
                   siPeriod: calculateDuration('2017-08-21', '2017-12-14'),
                   subject: '하이브리드 앱 으로 구현되어 있는 LG U+고객센터 iOS앱의 위젯과 Push알림 기능을 구현',
                   work: [
-                    'Git 형상관리화',
+                    '형상관리화 되어 있지 않던 프로젝트 Git을 이용한 형상관리화',
                     'weather extension을 이용한 위젯 기능 추가',
                     'Push Notification (알림) 기능 추가',
                     'Push서비스 담당 협력사의 API 연동',
@@ -510,7 +506,7 @@ export const updateResume = async (user, callback) => {
                     'React-Native 기반 Android, iOS 앱 개발',
                     'C++로 되어있는 사내 라이브러리를 적용하여 얼굴 인식, 필터 기능 구현',
                     'WebSocket을 이용한 게임 인터랙션 기능 구현',
-                    'Wowza 기반 Streaming서비스 구현',
+                    'Wowza 기반 Streaming 서비스 구현',
                     'Firebase Realtime DB 를 이용한 채팅 서비스 구현',
                     '모바일 기기용 영상합성앱 기술 적용'
                   ],
@@ -548,9 +544,9 @@ export const updateResume = async (user, callback) => {
                   siPeriod: calculateDuration('2015-11-04', '2016-09-08'),
                   subject: '자신만의 이미지 및 애니메이션 이모티콘 생성 앱 개발',
                   work: [
-                    '클린아키텍쳐 구조를 갖고 MVP 패턴이 적용',
+                    'Clean Architecture, MVP 패턴 적용',
                     'C++로 되어있는 폰트 렌더링 관련 Native 소스를 안드로이드에 적용',
-                    '이미지 애니메이션 기능 적용 ',
+                    '이미지 애니메이션 기능 적용',
                     '사진에 편집, 필터 기능 적용'
                   ],
                   workPercent: '30%',
