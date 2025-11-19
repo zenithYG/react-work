@@ -9,6 +9,7 @@ import Admin from './components/Admin';
 import Bridge from './components/Bridge';
 import TeamCraft from './components/TeamCraft';
 import TokenLogin from './components/TokenLogin';
+import Introduction from './components/Introduction';
 
 const Container = styled.div`
   display: flex;
@@ -46,6 +47,7 @@ const App = () => {
           <Route path="/tokenLogin" element={<TokenLogin />} />
           <Route path="/home" element={<Home />} />
           <Route path="/resume" element={<Resume />} />
+          <Route path="/intro" element={<Introduction />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/bridge" element={<Bridge />} />
           <Route path="/teamCraft" element={<TeamCraft />} />

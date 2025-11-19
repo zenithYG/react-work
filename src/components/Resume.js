@@ -11,7 +11,7 @@ import SchoolInfos from './ResumeUI/SchoolInfos'
 import WorkingExperience from './ResumeUI/WorkingExperience';
 import ResearchProject from './ResumeUI/ResearchProjects';
 import { updateResume } from './UpdateData';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import avatar from '../images/yg.jpg';
 
 import { calculateKoreanAge } from '../utils/dateUtils';
@@ -25,6 +25,7 @@ import {
 const Resume = () => {
 
   const contentRef = useRef();
+  const navigate = useNavigate();
 
   /** ⭐ PDF용 페이지 분리 ref */
   const page1Ref = useRef(null);
@@ -42,33 +43,43 @@ const Resume = () => {
    *  🔥 Export PDF
    * ====================== */
   const handleExportPdf = async () => {
-    await exportSeparatedPdf(page1Ref.current, "resume.pdf");
+    await exportSeparatedPdf(contentRef.current, "resume.pdf");
   };
 
-
-  /** ======================
-   * Firebase Auth
-   * ====================== */
+  /** Firebase Auth */
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (u) => {
       if (u) {
         setUser(u);
         setAdmin(true);
-        fetchUserData(u.uid);
+
+        // ⭐ fetch 완료 후 token 생성하도록 수정
+        fetchUserData(u.uid, () => {
+          try {
+            const created = btoa(JSON.stringify({ k: u.uid }));
+            setGeneratedToken(created);
+          } catch (e) {
+            console.log('token 생성 실패:', e);
+          }
+        });
+
       } else {
         if (location.state?.token) restoreToken(location.state.token);
         setLoading(false);
       }
     });
+
     return () => unsubscribe();
   }, []);
 
-  const fetchUserData = async (uid) => {
+  /** 데이터 가져오기 (콜백 추가 버전) */
+  const fetchUserData = async (uid, callback) => {
     try {
       const docSnap = await getDoc(doc(db, 'Users', uid));
       if (docSnap.exists()) setUserData(docSnap.data().resume);
     } catch (e) { }
     setLoading(false);
+    if (callback) callback();  // ⭐ token 생성 실행
   };
 
   function restoreToken(key) {
@@ -98,6 +109,19 @@ const Resume = () => {
       <AdminContainer>
         <UpdateButton onClick={() => updateResume(user, () => { })}>Update User Data</UpdateButton>
         <UpdateButton onClick={handleExportPdf}>Export pdf</UpdateButton>
+        <UpdateButton
+          onClick={() => {
+            if (!userData) {
+              alert("데이터가 없습니다.");
+              return;
+            }
+            navigate("/intro", { state: { resume: userData } });
+          }}
+        >
+          Introduction
+        </UpdateButton>
+
+
       </AdminContainer>
 
       {/* ⭐ 기존 UI (절대 수정 ❌) ⭐ */}

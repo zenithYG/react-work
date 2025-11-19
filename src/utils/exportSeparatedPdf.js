@@ -10,7 +10,7 @@ export default async function exportSeparatedPdf(page1, fileName) {
     });
 
     const pxToMm = 0.264583;
-    const margin = 15;                    // ✔ 상·하단 마진 유지
+    const margin = 8;                    // ✔ 상·하단 마진 유지
     const pageWidth = 210 - margin * 2;
     const pageHeight = 297 - margin * 2;
 
