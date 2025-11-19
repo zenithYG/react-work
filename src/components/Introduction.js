@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 import exportSeparatedPdf from '../utils/exportSeparatedPdf';
 import avatar from '../images/yg.jpg';
 import { calculateKoreanAge } from '../utils/dateUtils';
+
 import {
     UpdateButton, Card, Info, InfoContainer, Item, Avatar,
     MainTitle, Container, Section, CardContainer, AdminContainer
@@ -20,6 +21,13 @@ const Introduction = () => {
     const handleExportPdf = async () => {
         await exportSeparatedPdf(contentRef.current, "introduction.pdf");
     };
+
+    /** 📅 오늘 날짜 (YYYY년 M월 D일) */
+    const todayStr = new Date().toLocaleDateString('ko-KR', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    });
 
     return (
         <Container style={{ marginTop: '60px', height: 'calc(100vh - 60px)' }}>
@@ -39,43 +47,51 @@ const Introduction = () => {
                     </Section>
                 ) : (
                     <>
-                        {/* 📌 상단 프로필 영역 */}
                         <CardContainer>
-                            <Card>
-                                <div style={{ marginBottom: 0 }}>
-                                    <MainTitle>{userData.title}</MainTitle>
-                                    <MainTitle style={{ fontSize: '18px' }}>{userData.jobTitle}</MainTitle>
+                            <Card style={{ display: 'block' }}>
+                                {/* 🎯 자기소개서 제목 (가운데 정렬) */}
+                                <div style={{ textAlign: 'center', marginBottom: '8px' }}>
+                                    <MainTitle
+                                        style={{
+                                            textAlign: 'center',
+                                            paddingLeft: 0,
+                                            paddingRight: 0,
+                                        }}
+                                    >
+                                        자기소개서
+                                    </MainTitle>
                                 </div>
-                                <InfoContainer>
-                                    <Info>
-                                        <Item>{userData.name} ({userData.chineseCharacter})</Item>
-                                        <Item>{userData.birthday} (만 {calculateKoreanAge(userData.birthday)}세)</Item>
-                                        <Item>{userData.email}</Item>
-                                        <Item>{userData.mobile}</Item>
-                                    </Info>
-                                    <Avatar image={avatar} />
-                                </InfoContainer>
+
+                                {/* 📌 지원 정보 (바로 아래, 오른쪽 정렬) */}
+                                <div
+                                    style={{
+                                        textAlign: 'right',
+                                        fontSize: '14px',
+                                        paddingRight: 20,
+                                        paddingBottom: 10,  // ⬅️ 추가
+                                    }}
+                                >
+                                    <b>{userData.Introduction?.company}</b>
+                                    <br />
+                                    {userData.Introduction?.part}
+                                </div>
+
                             </Card>
                         </CardContainer>
 
-                        {/* ✨ 지원 정보 */}
-                        <Section>
-                            <h2 style={{ fontWeight: '700', marginBottom: '5px' }}>지원 정보</h2>
-                            <p>지원 분야: <b>{userData.Introduction?.company}</b> / <b>{userData.Introduction?.part}</b></p>
-                        </Section>
-
-                        {/* ✨ 본문 리스트 */}
+                        {/* ✨ 본문 리스트 (기존 그대로) */}
                         {userData.Introduction?.contents?.map((item, index) => (
                             <Section key={index}>
                                 {item.title && <h3 style={{ fontWeight: '600', marginBottom: '5px' }}>{item.title}</h3>}
-                                <p>{item.content}</p>
+                                <p style={{ lineHeight: 1.6 }}>{item.content}</p>
                             </Section>
                         ))}
 
-                        {/* ✨ 사실 확인 문구 */}
-                        <Section style={{ marginTop: '40px', textAlign: 'right', fontWeight: '600' }}>
+                        {/* ✨ 사실 확인 문구 (가운데 정렬 + 날짜 + 이름) */}
+                        <Section style={{ marginTop: '60px', textAlign: 'center', fontWeight: '600' }}>
                             <p style={{ marginBottom: '10px' }}>위 작성한 내용은 사실과 다름없음을 확인합니다.</p>
-                            <p>지원자: {userData.name}</p>
+                            <p style={{ marginBottom: '4px' }}>{todayStr}</p>
+                            <p>지원자 : {userData.name}</p>
                         </Section>
                     </>
                 )}
