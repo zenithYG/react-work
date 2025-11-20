@@ -56,6 +56,7 @@ const Introduction = () => {
                                             textAlign: 'center',
                                             paddingLeft: 0,
                                             paddingRight: 0,
+                                            paddingTop: 15
                                         }}
                                     >
                                         자기소개서
@@ -81,10 +82,17 @@ const Introduction = () => {
 
                         {/* ✨ 본문 리스트 (기존 그대로) */}
                         {userData.Introduction?.contents?.map((item, index) => (
-                            <Section key={index}>
-                                {item.title && <h3 style={{ fontWeight: '600', marginBottom: '5px' }}>{item.title}</h3>}
-                                <p style={{ lineHeight: 1.6 }}>{item.content}</p>
-                            </Section>
+                            <p
+                                style={{
+                                    lineHeight: 1.6,
+                                    whiteSpace: 'pre-line',
+                                    textIndent: '1em',
+                                    paddingLeft: 0
+                                }}
+                            >
+                                {item.content}
+                            </p>
+
                         ))}
 
                         {/* ✨ 사실 확인 문구 (가운데 정렬 + 날짜 + 이름) */}
