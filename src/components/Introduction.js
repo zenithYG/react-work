@@ -82,17 +82,19 @@ const Introduction = () => {
 
                         {/* ✨ 본문 리스트 (기존 그대로) */}
                         {userData.Introduction?.contents?.map((item, index) => (
-                            <p
-                                style={{
-                                    lineHeight: 1.6,
-                                    whiteSpace: 'pre-line',
-                                    textIndent: '1em',
-                                    paddingLeft: 0
-                                }}
-                            >
-                                {item.content}
-                            </p>
-
+                            <Section key={index}>
+                                {item.title && <h3 style={{ fontWeight: '600', marginBottom: '5px' }}>{item.title}</h3>}
+                                <p
+                                    style={{
+                                        lineHeight: 1.6,
+                                        whiteSpace: 'pre-line',
+                                        textIndent: '1em',
+                                        paddingLeft: 0
+                                    }}
+                                >
+                                    {item.content}
+                                </p>
+                            </Section>
                         ))}
 
                         {/* ✨ 사실 확인 문구 (가운데 정렬 + 날짜 + 이름) */}
