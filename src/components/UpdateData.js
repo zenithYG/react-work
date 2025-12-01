@@ -135,8 +135,8 @@ export const updateResume = async (user, callback) => {
               projects: [
                 {
                   title: '슈퍼SOL 개발',
-                  totalDate: calculateDurationCurrent('2025-02-01'),
-                  siStartDate: createDate('2025-02-01'),
+                  totalDate: calculateDurationCurrent('2025-02-03'),
+                  siStartDate: createDate('2025-02-03'),
                   siPeriod: '진행중',
                   subject: '기존 ‘신한은행’ 앱 기반으로 그룹사 통합 앱 ‘슈퍼SOL’ 개발',
                   work: [
@@ -198,12 +198,12 @@ export const updateResume = async (user, callback) => {
                   siStartDate: createDate('2023-04-19'),
                   siEndDate: createDate('2024-02-28'),
                   siPeriod: calculateDuration('2023-04-19', '2024-02-28'),
-                  subject: 'B2B 휴먼클라우드 서비스 뉴워커 iOS 앱 개발',
+                  subject: '저사양 폰 기기 지원을 위한 서비스 SOLmini 개발',
                   work: [
                     '신한 SOL mini 신규 개발 (이체, Third-Party 라이브러리 담당)',
-                    'MVVM 아키텍처, Clean 아키텍처를 활용한 Full Native 앱 개발',
+                    'MVVM 아키텍처, Clean 아키텍처를 활용한 앱 개발',
                     'RxSwift을 활용한 Reactive 구조 활용',
-                    'SnapKit 을 이용한 CodeBase UI 개발',
+                    'SnapKit 을 이용한 코드 기반 UI 개발',
                     '프로토콜지향 프로그래밍(POP) 전면 활용',
                     'Tuist 를 활용한 Xcode 프로젝트 유지관리',
                     'SwiftLint 활용, 코드 컨벤션 관리',
@@ -228,7 +228,7 @@ export const updateResume = async (user, callback) => {
                     'RIBs 아키텍처, Clean 아키텍처를 활용한 Native 앱 개발',
                     'Concurrency, Combine를 조합 활용한 비동기 프로그래밍 개발',
                     'DiffableDataSource를 활용한 Collection, Table개발',
-                    'Flex, Pin 을 이용한 CodeBase UI 개발',
+                    'Flex, Pin 을 이용한 코드기반 UI 개발',
                     '프로토콜지향 프로그래밍(POP) 전면 활용',
                     'Tuist 를 활용한 Xcode 프로젝트 유지관리',
                     '비즈니스로직 계층별 모듈화된 개발'
