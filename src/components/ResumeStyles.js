@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import { COMPANY } from "../constants/company";
 
 export const Card = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1372CE;
+  background-color: ${COMPANY.COLORS.PRIMARY};
   color: white;
   font-family: Arial, sans-serif;
   width: 100%;

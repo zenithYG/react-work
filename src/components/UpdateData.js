@@ -1,6 +1,7 @@
 import { db } from '../firebase';
 import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 import toast from "react-hot-toast";
+import { COMPANY } from "../constants/company";
 import {
   WorkPeriod,
   createDate,
@@ -70,7 +71,7 @@ export const updateResume = async (user, callback) => {
           address: '경기도 부천시 원미구 부흥로 49',
           chineseCharacter: '宋淵根',
           birthday: '1989.01.10',
-          jobTitle: '현대오토에버 완성차 앱 개발/운영 지원',
+          jobTitle: `[${COMPANY.NAME}] / ${COMPANY.SUPPORT_DEPARTMENT} 지원`,
           disabilityStatus: '없음',
           veteransStatus: '없음',
           totalPeriod: calculateTotalDuration(
@@ -609,8 +610,8 @@ export const updateResume = async (user, callback) => {
             }
           ],
           Introduction: {
-            company: '현대오토에버',
-            part: '완성차 앱 개발/운영 지원',
+            company: `${COMPANY.NAME}`,
+            part: `${COMPANY.SUPPORT_DEPARTMENT}`,
             contents: [
               {
                 title: 'AI 시대 개발자가 갖춰야 할 기술 선택의 기준',
