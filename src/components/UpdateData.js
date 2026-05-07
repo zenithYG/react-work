@@ -65,7 +65,7 @@ export const updateResume = async (user, callback) => {
       await updateDoc(userDocRef, {
         resume: {
           admin: true,
-          title: 'Application\nDeveloper(Android, iOS)',
+          title: 'iOS Developer',
           name: '송연근',
           mobile: '+82-10-8725-8120',
           address: '경기도 부천시 원미구 부흥로 49',
@@ -584,7 +584,7 @@ export const updateResume = async (user, callback) => {
           executiveSummary: [
             `${calculateYearOnly('2014-07-14T00:00:00')}차 모바일 개발자`,
             'Swift, Objective-C, Android, Java, React-Native 언어 활용',
-            'MVC, MVVM, RIBs, Clean Architecture 적용 경험',
+            'MVC, MVVM, MVI, RIBs, Clean Architecture 적용 경험',
             '코드의 안정성과 품질, 그리고 빠른 개발속도를 위한 유닛테스트, 통합테스트 작성 및 활용'
           ],
           educationInfo: [

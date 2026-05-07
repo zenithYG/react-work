@@ -57,6 +57,7 @@ export const Item = styled.div`
   margin: 5px 0;
   line-height: 1.0;
   font-weight: 500;
+  color: ${COMPANY.COLORS.PRIMARY_FONT};
   @media (max-width: 768px) {
     text-align: center;
   }
@@ -65,7 +66,7 @@ export const Item = styled.div`
 export const Avatar = styled.div`
   width: 90px;
   height: 120px;
-  background-color: #fff;
+  background-color: ${COMPANY.COLORS.PRIMARY_FONT};
   background-image: url(${(props) => props.image});
   background-size: contain; /* 비율 유지하면서 이미지가 컨테이너에 맞게 조정됨 */
   background-position: center; /* 이미지를 컨테이너 중앙에 배치 */
@@ -95,7 +96,7 @@ export const UpdateButton = styled.button`
 `;
 
 export const MainTitle = styled.h1`
-  color: #ffffff; 
+  color: ${COMPANY.COLORS.PRIMARY_FONT}; 
   font-weight: 800;
   padding-top: 0px;
   padding-left: 20px;
