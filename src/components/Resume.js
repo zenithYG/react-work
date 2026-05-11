@@ -21,6 +21,7 @@ import {
   MainTitle, Container, Section,
   CardContainer, AdminContainer
 } from './ResumeStyles';
+import exportOnePagePdf from '../utils/exportOnePagePdf';
 
 const Resume = () => {
 
@@ -44,6 +45,10 @@ const Resume = () => {
    * ====================== */
   const handleExportPdf = async () => {
     await exportSeparatedPdf(contentRef.current, "resume.pdf");
+  };
+
+  const handleExportOnePagePdf = async () => {
+    await exportOnePagePdf(contentRef.current, "resume.pdf");
   };
 
   /** Firebase Auth */
@@ -118,9 +123,9 @@ const Resume = () => {
             navigate("/intro", { state: { resume: userData } });
           }}
         >
-          Introduction
+          자기소개서
         </UpdateButton>
-
+        <UpdateButton onClick={handleExportOnePagePdf}>한페이지로 내보내기</UpdateButton>
 
       </AdminContainer>
 
