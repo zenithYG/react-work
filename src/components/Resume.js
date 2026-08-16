@@ -11,17 +11,37 @@ import SchoolInfos from './ResumeUI/SchoolInfos'
 import WorkingExperience from './ResumeUI/WorkingExperience';
 import ResearchProject from './ResumeUI/ResearchProjects';
 import { updateResume } from './UpdateData';
+import { COMPANY } from '../constants/company';
 import { useLocation, useNavigate } from "react-router-dom";
 import avatar from '../images/yg.jpg';
+import tvingLogo from '../images/tving_logo.webp';
 
 import { calculateKoreanAge } from '../utils/dateUtils';
 
 import {
   UpdateButton, Card, Info, InfoContainer, Item, Avatar,
   MainTitle, Container, Section,
-  CardContainer, AdminContainer
+  CardContainer, AdminContainer, CompanyLogo
 } from './ResumeStyles';
 import exportOnePagePdf from '../utils/exportOnePagePdf';
+
+const renderJobTitle = (jobTitle) => {
+  const companyName = `[${COMPANY.NAME}]`;
+
+  if (!jobTitle?.includes(companyName)) {
+    return jobTitle;
+  }
+
+  const [before, after] = jobTitle.split(companyName);
+
+  return (
+    <>
+      {before}
+      <CompanyLogo src={tvingLogo} alt={COMPANY.NAME} />
+      {after}
+    </>
+  );
+};
 
 const Resume = () => {
 
@@ -137,7 +157,7 @@ const Resume = () => {
             <div style={{ marginBottom: 0 }}>
               <MainTitle>{userData.title}</MainTitle>
               <MainTitle style={{ fontSize: '18px' }}>
-                {userData.jobTitle}
+                {renderJobTitle(userData.jobTitle)}
               </MainTitle>
             </div>
 

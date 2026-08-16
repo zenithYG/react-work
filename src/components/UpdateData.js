@@ -135,10 +135,28 @@ export const updateResume = async (user, callback) => {
               revenue: '35조 7,517억 9,800만 (2023.12.IFRS 연결)',
               projects: [
                 {
+                  title: '슈퍼SOL 운영, SOL Biz(신한은행 기업) 운영',
+                  totalDate: calculateDurationCurrent('2026-06-15'),
+                  seStartDate: createDate('2026-06-15'),
+                  seEndDate: '진행중',
+                  subject: '그룹사 통합 앱 슈퍼SOL 운영, 기업용 서비스 SOL Biz(신한은행 기업) 운영',
+                  work: [
+                    '슈퍼SOL - 앱 기동, 라우팅, 공통 영역 업무 문서화',
+                    '슈퍼SOL - WhaTap, 웹 API로그 분석을 통해 장애 및 문의 대응',
+                    '슈퍼SOL - 기동, 유량제어, 자동로그인, 보안키패드, 인증, 플러그인, 비대면 실명인증 업무 개선',
+                    '슈퍼SOL - 안정화를 위한 버그 수정 및 개선',
+                    'SOL Biz - 버그 수정 및 신규버전 배포'
+                  ],
+                  workPercent: '33.3%',
+                  technology: 'Swift5, Bitbucket, Jira, Confluence',
+                  result: ['배포 후 핫픽스건은 2회로 안정적인 서비스 제공', '신한금융 내 신한은행을 제외한 다른 계열사에 대해 다소 수동적이었던 태도에서 벗어나, 해당 서비스 배포를 계기로 적극적으로 관심을 갖고 행동하게 됨']
+                },
+                {
                   title: '슈퍼SOL 개발',
-                  totalDate: calculateDurationCurrent('2025-02-03'),
+                  totalDate: calculateDuration('2025-02-03', '2026-06-30'),
                   siStartDate: createDate('2025-02-03'),
-                  siPeriod: '진행중',
+                  siEndDate: createDate('2026-06-30'),
+                  siPeriod: calculateDuration('2025-02-03', '2026-06-30'),
                   subject: '기존 ‘신한은행’ 앱 기반으로 그룹사 통합 앱 ‘슈퍼SOL’ 개발',
                   work: [
                     '앱 기동, 라우팅, 공통 영역 개발 담당',
@@ -152,13 +170,13 @@ export const updateResume = async (user, callback) => {
                   ],
                   workPercent: '33.3%',
                   technology: 'Swift5, Bitbucket, Jira, Confluence',
-                  result: ['개발 진행 중']
+                  result: ['그룹사 대표앱 슈퍼SOL의 안정적인 서비스 제공', '신한금융 계열사 이용 고객의 유입률 증가']
                 },
                 {
                   title: '신한 SOL뱅크, SOL mini 운영',
                   totalDate: calculateDurationCurrent('2023-12-06'),
                   seStartDate: createDate('2023-12-06'),
-                  seEndDate: '진행중',
+                  seEndDate: createDate('2026-06-15'),
                   sePeriod: calculateDurationCurrent('2023-12-06'),
                   subject: '신한은행 대표 모바일 서비스 ‘신한은행’(구 SOL뱅크), SOL mini 운영',
                   work: [
@@ -582,7 +600,7 @@ export const updateResume = async (user, callback) => {
             }
           ],
           executiveSummary: [
-            `${calculateYearOnly('2014-07-14T00:00:00')}차 모바일 개발자`,
+            `${calculateYearOnly('2015-07-14T00:00:00')}차 모바일 개발자`,
             'Swift, Objective-C, Android, Java, React-Native 언어 활용',
             'MVC, MVVM, MVI, RIBs, Clean Architecture 적용 경험',
             '코드의 안정성과 품질, 그리고 빠른 개발속도를 위한 유닛테스트, 통합테스트 작성 및 활용'
