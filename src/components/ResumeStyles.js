@@ -115,9 +115,6 @@ export const CompanyLogo = styled.img`
   height: auto;
   max-height: 28px;
   margin-right: 8px;
-  padding: 2px 4px;
-  background: #FFFFFF;
-  border-radius: 2px;
   object-fit: contain;
   vertical-align: middle;
 `;
