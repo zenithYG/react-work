@@ -32,17 +32,14 @@ export const calculateDuration = (startDate, endDate) => {
 }
 
 export const calculateDurationCurrent = (startDate) => {
-    console.log("🟦 [calculateDurationCurrent] 호출됨");
-    console.log("🟦 입력값 startDate:", startDate);
-
-    const start = new Date(startDate);
+    const start = toDate(startDate);
     const end = new Date();
 
-    console.log("📌 파싱된 start:", start.toISOString());
-    console.log("📌 현재 end:", end.toISOString());
+    if (Number.isNaN(start.getTime())) {
+        return '0개월';
+    }
 
     const diffInMs = end - start;
-    console.log("⏱️ diffInMs (밀리초 차이):", diffInMs);
 
     const YEAR_MS = 1000 * 60 * 60 * 24 * 365.25;
     const MONTH_MS = 1000 * 60 * 60 * 24 * 30.44;
@@ -50,16 +47,10 @@ export const calculateDurationCurrent = (startDate) => {
     const diffInYears = Math.floor(diffInMs / YEAR_MS);
     const diffInMonths = Math.floor((diffInMs % YEAR_MS) / MONTH_MS);
 
-    console.log("📘 계산된 diffInYears:", diffInYears);
-    console.log("📗 계산된 diffInMonths:", diffInMonths);
-
-    // 연도가 0이면 개월만 리턴
     if (diffInYears === 0) {
-        console.log(`📤 결과: ${diffInMonths}개월`);
         return `${diffInMonths}개월`;
     }
 
-    console.log(`📤 결과: ${diffInYears}년 ${diffInMonths}개월`);
     return `${diffInYears}년 ${diffInMonths}개월`;
 };
 
@@ -134,6 +125,19 @@ export const calculateKoreanAge = (birthDate) => {
     }
     return age;
 }
+
+const toDate = (dateValue) => {
+    if (dateValue?.toDate) {
+        return dateValue.toDate();
+    }
+
+    if (dateValue && typeof dateValue === 'object' && dateValue.seconds !== undefined) {
+        return new Date(dateValue.seconds * 1000);
+    }
+
+    return new Date(dateValue);
+};
+
 export const dateToString = (dateObj) => {
     if (
         dateObj &&

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { SubTitle, Divider, ContentsItem } from '../ResumeStyles';
-import { dateToString } from '../../utils/dateUtils';
+import { calculateDurationCurrent, dateToString } from '../../utils/dateUtils';
 
 const Section = styled.div`
   margin-bottom: 24px;
@@ -70,6 +70,14 @@ const List = styled.ul`
   color: #444;
 `;
 
+const getProjectPeriod = (startDate, endDate, period) => {
+  if (endDate === '진행중') {
+    return calculateDurationCurrent(startDate);
+  }
+
+  return period;
+};
+
 const WorkingExperience = ({ listItems }) => {
   return (
     <section>
@@ -90,37 +98,42 @@ const WorkingExperience = ({ listItems }) => {
             <p>{item.businessInfo}</p>
           </FlexContainer>
 
-          {item.projects.map((project, projectIndex) => (
-            <ProjectContainer key={projectIndex}>
-              <ProjectTitle>{project.title} {project.totalDate && `(${project.totalDate})`}</ProjectTitle>
-              <ProjectDetails>
-                {(project.siStartDate || project.siEndDate) && (
-                  <>
-                    개발 : {dateToString(project.siStartDate)} - {dateToString(project.siEndDate)} ({project.siPeriod})
-                  </>
-                )}
+          {item.projects.map((project, projectIndex) => {
+            const siPeriod = getProjectPeriod(project.siStartDate, project.siEndDate, project.siPeriod);
+            const sePeriod = getProjectPeriod(project.seStartDate, project.seEndDate, project.sePeriod);
 
-                {(project.seStartDate || project.seEndDate) && (
-                  <>
-                    <br />
-                    운영 : {dateToString(project.seStartDate)} - {dateToString(project.seEndDate)} ({project.sePeriod})
-                  </>
-                )}
-              </ProjectDetails>
-              <ContentsItem>{project.subject}</ContentsItem>
-              <List>
-                {project.work.map((work, workIndex) => (
-                  <li key={workIndex}>{work}</li>
-                ))}
-              </List>
-              <p>기여도: {project.workPercent} | 사용 기술: {project.technology}</p>
-              <List>
-                {project.result.map((result, resultIndex) => (
-                  <li key={resultIndex}>{result}</li>
-                ))}
-              </List>
-            </ProjectContainer>
-          ))}
+            return (
+              <ProjectContainer key={projectIndex}>
+                <ProjectTitle>{project.title} {project.totalDate && `(${project.totalDate})`}</ProjectTitle>
+                <ProjectDetails>
+                  {(project.siStartDate || project.siEndDate) && (
+                    <>
+                      개발 : {dateToString(project.siStartDate)} - {dateToString(project.siEndDate)} ({siPeriod})
+                    </>
+                  )}
+
+                  {(project.seStartDate || project.seEndDate) && (
+                    <>
+                      <br />
+                      운영 : {dateToString(project.seStartDate)} - {dateToString(project.seEndDate)} ({sePeriod})
+                    </>
+                  )}
+                </ProjectDetails>
+                <ContentsItem>{project.subject}</ContentsItem>
+                <List>
+                  {project.work.map((work, workIndex) => (
+                    <li key={workIndex}>{work}</li>
+                  ))}
+                </List>
+                <p>기여도: {project.workPercent} | 사용 기술: {project.technology}</p>
+                <List>
+                  {project.result.map((result, resultIndex) => (
+                    <li key={resultIndex}>{result}</li>
+                  ))}
+                </List>
+              </ProjectContainer>
+            );
+          })}
         </Section>
       ))}
     </section>

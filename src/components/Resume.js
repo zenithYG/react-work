@@ -14,7 +14,7 @@ import { updateResume } from './UpdateData';
 import { COMPANY } from '../constants/company';
 import { useLocation, useNavigate } from "react-router-dom";
 import avatar from '../images/yg.jpg';
-import tvingLogo from '../images/tving_logo.webp';
+import companyLogo from '../images/millie_logo.jpg';
 
 import { calculateKoreanAge } from '../utils/dateUtils';
 
@@ -37,7 +37,7 @@ const renderJobTitle = (jobTitle) => {
   return (
     <>
       {before}
-      <CompanyLogo src={tvingLogo} alt={COMPANY.NAME} />
+      <CompanyLogo src={companyLogo} alt={COMPANY.NAME} />
       {after}
     </>
   );

@@ -1,9 +1,9 @@
 
 export const COMPANY = {
-    NAME: "TVING",
+    NAME: "밀리의 서재",
     SUPPORT_DEPARTMENT: "iOS개발",
     COLORS: {
-        PRIMARY: "#111827",
+        PRIMARY: "#000000",
         PRIMARY_FONT: "#FFFFFF"
     },
 };
