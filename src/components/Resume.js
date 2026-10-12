@@ -14,7 +14,7 @@ import { updateResume } from './UpdateData';
 import { COMPANY } from '../constants/company';
 import { useLocation, useNavigate } from "react-router-dom";
 import avatar from '../images/yg.jpg';
-import companyLogo from '../images/millie_logo_yellow.jpg';
+import companyLogo from '../images/coupangpay_logo.png';
 
 import { calculateKoreanAge } from '../utils/dateUtils';
 
@@ -25,20 +25,11 @@ import {
 } from './ResumeStyles';
 import exportOnePagePdf from '../utils/exportOnePagePdf';
 
-const renderJobTitle = (jobTitle) => {
-  const companyName = `[${COMPANY.NAME}]`;
-
-  if (!jobTitle?.includes(companyName)) {
-    return jobTitle;
-  }
-
-  const [before, after] = jobTitle.split(companyName);
-
+const renderJobTitle = () => {
   return (
     <>
-      {before}
       <CompanyLogo src={companyLogo} alt={COMPANY.NAME} />
-      {after}
+      / {COMPANY.SUPPORT_DEPARTMENT} 지원
     </>
   );
 };
@@ -157,7 +148,7 @@ const Resume = () => {
             <div style={{ marginBottom: 0 }}>
               <MainTitle>{userData.title}</MainTitle>
               <MainTitle style={{ fontSize: '18px' }}>
-                {renderJobTitle(userData.jobTitle)}
+                {renderJobTitle()}
               </MainTitle>
             </div>
 
@@ -210,7 +201,7 @@ const Resume = () => {
             <Card>
               <div>
                 <MainTitle>{userData.title}</MainTitle>
-                <MainTitle style={{ fontSize: '18px' }}>{userData.jobTitle}</MainTitle>
+                <MainTitle style={{ fontSize: '18px' }}>{renderJobTitle()}</MainTitle>
               </div>
               <InfoContainer>
                 <Info>

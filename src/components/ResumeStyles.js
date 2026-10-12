@@ -6,7 +6,7 @@ export const Card = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: ${COMPANY.COLORS.PRIMARY};
-  color: white;
+  color: ${COMPANY.COLORS.PRIMARY_FONT};
   font-family: Arial, sans-serif;
   width: 100%;
 
@@ -115,6 +115,9 @@ export const CompanyLogo = styled.img`
   height: auto;
   max-height: 28px;
   margin-right: 8px;
+  padding: 6px 8px;
+  background-color: #fff;
+  border-radius: 2px;
   object-fit: contain;
   vertical-align: middle;
 `;

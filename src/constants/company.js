@@ -1,9 +1,9 @@
 
 export const COMPANY = {
-    NAME: "밀리의 서재",
+    NAME: "쿠팡페이",
     SUPPORT_DEPARTMENT: "iOS개발",
     COLORS: {
-        PRIMARY: "#FFF200",
-        PRIMARY_FONT: "#000000"
+        PRIMARY: "#935227",
+        PRIMARY_FONT: "#FFFFFF"
     },
 };

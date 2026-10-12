@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import exportSeparatedPdf from '../utils/exportSeparatedPdf';
 import avatar from '../images/yg.jpg';
 import { calculateKoreanAge } from '../utils/dateUtils';
+import { COMPANY } from '../constants/company';
 
 import {
     UpdateButton, Card, Info, InfoContainer, Item, Avatar,
@@ -72,7 +73,7 @@ const Introduction = () => {
                                         paddingBottom: 10,  // ⬅️ 추가
                                     }}
                                 >
-                                    <b>{userData.Introduction?.company}</b>
+                                    <b>{COMPANY.NAME}</b>
                                     <br />
                                     {userData.Introduction?.part}
                                 </div>
