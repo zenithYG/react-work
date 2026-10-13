@@ -1,9 +1,9 @@
 
 export const COMPANY = {
-    NAME: "쿠팡페이",
-    SUPPORT_DEPARTMENT: "iOS 개발자 (로켓페이)",
+    NAME: "한화솔루션",
+    SUPPORT_DEPARTMENT: "Mobile Application Engineering",
     COLORS: {
-        PRIMARY: "#935227",
-        PRIMARY_FONT: "#FFFFFF"
+        PRIMARY: "#F37321",
+        PRIMARY_FONT: "#111111"
     },
 };

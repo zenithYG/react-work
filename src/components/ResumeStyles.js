@@ -111,9 +111,9 @@ export const MainTitle = styled.h1`
 `;
 
 export const CompanyLogo = styled.img`
-  width: 140px;
+  width: 160px;
   height: auto;
-  max-height: 28px;
+  max-height: 46px;
   margin-right: 8px;
   padding: 6px 8px;
   background-color: #fff;

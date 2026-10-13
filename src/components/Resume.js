@@ -14,7 +14,7 @@ import { updateResume } from './UpdateData';
 import { COMPANY } from '../constants/company';
 import { useLocation, useNavigate } from "react-router-dom";
 import avatar from '../images/yg.jpg';
-import companyLogo from '../images/coupangpay_logo.png';
+import companyLogo from '../images/hanwha_solutions_logo.svg';
 
 import { calculateKoreanAge } from '../utils/dateUtils';
 
