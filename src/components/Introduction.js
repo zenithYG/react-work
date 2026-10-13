@@ -75,7 +75,7 @@ const Introduction = () => {
                                 >
                                     <b>{COMPANY.NAME}</b>
                                     <br />
-                                    {userData.Introduction?.part}
+                                    {COMPANY.SUPPORT_DEPARTMENT}
                                 </div>
 
                             </Card>

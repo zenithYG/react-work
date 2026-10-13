@@ -123,7 +123,7 @@ const Resume = () => {
 
       {/* ⭐⭐ UI 그대로 유지 — 버튼 손대지 않음 ⭐⭐ */}
       <AdminContainer>
-        <UpdateButton onClick={() => updateResume(user, () => { })}>Update User Data</UpdateButton>
+        <UpdateButton onClick={() => updateResume(user, () => fetchUserData(user.uid))}>Update User Data</UpdateButton>
         <UpdateButton onClick={handleExportPdf}>Export pdf</UpdateButton>
         <UpdateButton
           onClick={() => {
