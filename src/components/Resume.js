@@ -28,9 +28,9 @@ import exportOnePagePdf from '../utils/exportOnePagePdf';
 const renderJobTitle = () => {
   return (
     <>
-      <CompanyLogo src={companyLogo} alt={COMPANY.NAME} />
-      / {COMPANY.SUPPORT_DEPARTMENT} 지원
-    </>
+  <CompanyLogo src={companyLogo} alt={COMPANY.NAME} />
+  <div> {COMPANY.SUPPORT_DEPARTMENT} 지원</div>
+</>
   );
 };
 
