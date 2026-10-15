@@ -49,11 +49,12 @@ const Introduction = () => {
                 ) : (
                     <>
                         <CardContainer>
-                            <Card style={{ display: 'block' }}>
+                            <Card style={{ display: 'block', backgroundColor: '#F37321', color: '#FFFFFF' }}>
                                 {/* 🎯 자기소개서 제목 (가운데 정렬) */}
                                 <div style={{ textAlign: 'center', marginBottom: '8px' }}>
                                     <MainTitle
                                         style={{
+                                            color: 'inherit',
                                             textAlign: 'center',
                                             paddingLeft: 0,
                                             paddingRight: 0,
