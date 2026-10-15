@@ -153,7 +153,7 @@ const Resume = () => {
                 <Item>{userData.mobile}</Item>
               </Info>
 
-              <Avatar image={avatar} />
+              <Avatar src={avatar} alt={`${userData.name} 증명사진`} data-pdf-original-image />
             </InfoContainer>
 
           </Card>
@@ -205,7 +205,7 @@ const Resume = () => {
                   <Item>{userData.email}</Item>
                   <Item>{userData.mobile}</Item>
                 </Info>
-                <Avatar image={avatar} />
+                <Avatar src={avatar} alt={`${userData.name} 증명사진`} data-pdf-original-image />
               </InfoContainer>
             </Card>
           </CardContainer>

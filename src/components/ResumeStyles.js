@@ -63,18 +63,14 @@ export const Item = styled.div`
   }
 `;
 
-export const Avatar = styled.div`
+export const Avatar = styled.img`
   width: 90px;
   height: 120px;
+  flex-shrink: 0;
   background-color: ${COMPANY.COLORS.PRIMARY_FONT};
-  background-image: url(${(props) => props.image});
-  background-size: contain; /* 비율 유지하면서 이미지가 컨테이너에 맞게 조정됨 */
-  background-position: center; /* 이미지를 컨테이너 중앙에 배치 */
-  background-repeat: no-repeat; /* 이미지 반복 방지 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #5b7fa4;
+  object-fit: contain;
+  object-position: center;
+  display: block;
 
   @media (max-width: 768px) {
     margin-bottom: 10px;
