@@ -25,15 +25,6 @@ import {
 } from './ResumeStyles';
 import exportOnePagePdf from '../utils/exportOnePagePdf';
 
-const renderJobTitle = () => {
-  return (
-    <>
-  <CompanyLogo src={companyLogo} alt={COMPANY.NAME} />
-  <div> {COMPANY.SUPPORT_DEPARTMENT} 지원</div>
-</>
-  );
-};
-
 const Resume = () => {
 
   const contentRef = useRef();
@@ -146,9 +137,11 @@ const Resume = () => {
         <CardContainer>
           <Card>
             <div style={{ marginBottom: 0 }}>
-              <MainTitle>{userData.title}</MainTitle>
+              <MainTitle>
+                <CompanyLogo src={companyLogo} alt={COMPANY.NAME} />
+              </MainTitle>
               <MainTitle style={{ fontSize: '18px' }}>
-                {renderJobTitle()}
+                {COMPANY.SUPPORT_DEPARTMENT} 지원
               </MainTitle>
             </div>
 
@@ -200,8 +193,10 @@ const Resume = () => {
           <CardContainer>
             <Card>
               <div>
-                <MainTitle>{userData.title}</MainTitle>
-                <MainTitle style={{ fontSize: '18px' }}>{renderJobTitle()}</MainTitle>
+                <MainTitle>
+                  <CompanyLogo src={companyLogo} alt={COMPANY.NAME} />
+                </MainTitle>
+                <MainTitle style={{ fontSize: '18px' }}>{COMPANY.SUPPORT_DEPARTMENT} 지원</MainTitle>
               </div>
               <InfoContainer>
                 <Info>
